@@ -3,243 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>広告掲載メディア | DIYstation アフィリエイトメディア</title>
+<meta name="description" content="転職・金融・スクール・通信・保険など、暮らしに役立つサービス情報をカテゴリ別にご紹介する情報メディアです。">
+<title>DIYstation | 暮らしに役立つサービス情報メディア</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Noto Sans JP",sans-serif;background:#F5F7FA;color:#222;max-width:520px;margin:0 auto}
-
-/* PRバー */
 .pr-bar{background:#FFF8DC;border-bottom:2px solid #F5C842;text-align:center;padding:7px 12px;font-size:11px;font-weight:700;color:#7A5F00}
-
-/* ヒーロー */
-.hero{background:linear-gradient(160deg,#0D1B4B 0%,#1A3A8F 65%,#0a2a6e 100%);padding:32px 20px 28px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:rgba(255,255,255,.04);border-radius:50%}
-.hero::after{content:"";position:absolute;bottom:-30px;left:-30px;width:160px;height:160px;background:rgba(255,255,255,.03);border-radius:50%}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.15);border:1px solid rgba(255,213,79,.4);color:#FFD54F;font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.08em;margin-bottom:14px}
-.hero-title{color:#fff;font-size:24px;font-weight:900;line-height:1.3;margin-bottom:10px}
-.hero-title em{color:#FFD740;font-style:normal;display:block;font-size:28px}
-.hero-sub{color:rgba(255,255,255,.7);font-size:12px;line-height:1.8;margin-bottom:20px}
-.hero-media-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:10px 16px}
-.hero-media-badge span{color:#fff;font-size:12px;font-weight:700}
-.hero-media-badge small{color:rgba(255,255,255,.6);font-size:10px;display:block}
-
-/* 実績バー */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#1A3A8F}
-.stat{padding:14px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
-.stat:last-child{border-right:none}
-.stat-num{font-size:20px;font-weight:900;color:#FFD740;line-height:1}
-.stat-unit{font-size:10px;color:#FFD740}
-.stat-label{font-size:10px;color:rgba(255,255,255,.65);margin-top:3px}
-
-/* セクション */
-.section{padding:28px 16px}
-.section-label{display:inline-block;background:#E8EEF8;color:#1A3A8F;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.06em;margin-bottom:8px}
-.section-title{font-size:18px;font-weight:900;color:#0D1B4B;margin-bottom:6px;line-height:1.3}
-.section-desc{font-size:12px;color:#666;line-height:1.8}
-
-/* 特長 */
-.features{display:flex;flex-direction:column;gap:10px;margin-top:16px}
-.feat{display:flex;align-items:flex-start;gap:12px;background:#fff;border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
-.feat-icon{font-size:26px;flex-shrink:0;margin-top:2px}
-.feat-title{font-size:13px;font-weight:900;color:#0D1B4B;margin-bottom:3px}
-.feat-desc{font-size:11px;color:#666;line-height:1.6}
-
-/* ジャンルカード */
-.genre-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.genre-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.genre-card-head{padding:10px 14px;display:flex;align-items:center;gap:8px}
-.genre-card-icon{font-size:20px}
-.genre-card-name{color:#fff;font-size:13px;font-weight:900}
-.genre-card-body{padding:10px 14px}
-.genre-count{font-size:11px;color:#888;margin-bottom:4px}
-.genre-top{font-size:12px;color:#333}
-.genre-top strong{color:#E53935;font-weight:900}
-
-/* カテゴリタグ */
-.cat-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.cat-tag{background:#E8EEF8;color:#1A3A8F;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px}
-
-/* フロー */
-.flow{display:flex;flex-direction:column;gap:0;margin-top:16px}
-.flow-item{display:flex;gap:14px;position:relative}
-.flow-item:not(:last-child)::after{content:"";position:absolute;left:19px;top:40px;width:2px;height:calc(100% - 8px);background:linear-gradient(#1A3A8F,rgba(26,58,143,0.1))}
-.flow-num{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1A3A8F,#42A5F5);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(26,58,143,.3)}
-.flow-body{padding-bottom:24px;flex:1}
-.flow-title{font-size:13px;font-weight:900;color:#0D1B4B;margin-bottom:4px;padding-top:10px}
-.flow-desc{font-size:11px;color:#666;line-height:1.6}
-
-/* CTAセクション */
-.cta-section{background:linear-gradient(135deg,#0D1B4B,#1A3A8F);padding:28px 20px;margin:0 12px 16px;border-radius:16px;text-align:center}
-.cta-title{color:#fff;font-size:17px;font-weight:900;line-height:1.4;margin-bottom:8px}
-.cta-sub{color:rgba(255,255,255,.7);font-size:11px;margin-bottom:20px;line-height:1.7}
-.cta-url{display:block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:10px 14px;color:#FFD740;font-size:12px;font-weight:700;word-break:break-all;margin-bottom:16px;text-decoration:none}
-.cta-note{font-size:10px;color:rgba(255,255,255,.5)}
-
-/* フッター */
-.footer{background:#111;color:rgba(255,255,255,.4);font-size:11px;text-align:center;padding:24px 16px;line-height:2}
-.footer-pr{background:rgba(255,255,255,.07);border-radius:6px;padding:8px 12px;margin-bottom:12px;color:rgba(255,255,255,.65);font-weight:700;font-size:12px}
+.site-header{background:#fff;border-bottom:3px solid #1A3A8F;padding:14px 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.site-logo{font-size:18px;font-weight:900;color:#1A3A8F}
+.site-logo span{color:#FFD740}
+.site-tagline{font-size:10px;color:#888;margin-top:2px}
+.hero{background:linear-gradient(160deg,#0D1B4B 0%,#1A3A8F 65%,#0a2a6e 100%);padding:36px 20px 32px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-80px;right:-80px;width:260px;height:260px;background:rgba(255,255,255,.03);border-radius:50%}
+.hero-eyebrow{display:inline-block;background:rgba(255,213,79,.15);border:1px solid rgba(255,213,79,.35);color:#FFD54F;font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.1em;margin-bottom:14px}
+.hero-title{color:#fff;font-size:23px;font-weight:900;line-height:1.35;margin-bottom:12px}
+.hero-title em{color:#FFD740;font-style:normal}
+.hero-desc{color:rgba(255,255,255,.72);font-size:12px;line-height:1.9;margin-bottom:22px}
+.hero-stats{display:flex;background:rgba(255,255,255,.1);border-radius:12px;overflow:hidden}
+.hero-stat{flex:1;padding:12px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{font-size:20px;font-weight:900;color:#FFD740;line-height:1}
+.hero-stat-unit{font-size:10px;color:#FFD740}
+.hero-stat-label{font-size:10px;color:rgba(255,255,255,.6);margin-top:3px}
+.nav-scroll{overflow-x:auto;background:#fff;padding:12px 16px;border-bottom:1px solid #eee;display:flex;gap:8px}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-item{white-space:nowrap;background:#F0F4FF;color:#1A3A8F;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;text-decoration:none;flex-shrink:0}
+.nav-item:hover{background:#1A3A8F;color:#fff}
+.cat-section{margin:16px 12px;border-radius:16px;overflow:hidden;box-shadow:0 3px 14px rgba(0,0,0,.09)}
+.cat-header{padding:16px 18px}
+.cat-header-inner{display:flex;align-items:center;gap:14px}
+.cat-icon{font-size:32px}
+.cat-name{color:#fff;font-size:17px;font-weight:900}
+.cat-count{color:rgba(255,255,255,.7);font-size:11px;margin-top:2px}
+.cat-desc{padding:12px 16px;font-size:12px;color:#444;line-height:1.8;background:#fff;border-bottom:1px solid #eee}
+.article-grid{background:#eee;display:grid;grid-template-columns:1fr 1fr;gap:1px}
+.article-card{background:#fff;padding:14px 12px;text-decoration:none;color:#222;display:flex;flex-direction:column;gap:6px}
+.article-card:hover{background:#F8FAFF}
+.article-cat{font-size:10px;font-weight:700}
+.article-title{font-size:12px;font-weight:700;line-height:1.5;color:#1a1a1a;flex:1;min-height:36px}
+.article-link{font-size:11px;font-weight:700;color:#1A3A8F}
+.footer{background:#111;color:rgba(255,255,255,.4);font-size:11px;text-align:center;padding:28px 16px;line-height:2.2;margin-top:8px}
+.footer-pr{background:rgba(255,255,255,.07);border-radius:8px;padding:10px 14px;margin-bottom:14px;color:rgba(255,255,255,.65);font-weight:700;font-size:12px}
+.footer-logo{font-size:16px;font-weight:900;color:rgba(255,255,255,.5);margin-bottom:8px}
 </style>
 </head>
 <body>
-
-<div class="pr-bar">【メディア情報】本サイトはアフィリエイト広告を掲載するメディアです</div>
-
-<!-- ヒーロー -->
+<div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
+<header class="site-header">
+  <div class="site-logo">DIY<span>station</span></div>
+  <div class="site-tagline">暮らしに役立つサービス情報メディア</div>
+</header>
 <section class="hero">
-  <div class="hero-eyebrow">📋 AFFILIATE MEDIA</div>
-  <h1 class="hero-title">
-    広告掲載メディア
-    <em>DIYstation</em>
-  </h1>
-  <p class="hero-sub">
-    転職・金融・スクール・通信など<br>
-    高ROI案件を中心に23件を掲載。<br>
-    ユーザーの課題解決に特化した情報メディアです。
-  </p>
-  <div class="hero-media-badge">
-    <span>🌐 <span>ricesan7.github.io/affiliate-lp</span><small>メディアURL</small></span>
+  <div class="hero-eyebrow">📚 INFORMATION MEDIA</div>
+  <h1 class="hero-title">あなたの暮らしに<br><em>役立つ情報</em>を届ける</h1>
+  <p class="hero-desc">転職・お金・学び・通信・保険など<br>生活に関わるサービスをわかりやすく紹介。<br>あなたに合った選択肢が見つかります。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div><span class="hero-stat-num">23</span><span class="hero-stat-unit">件</span></div><div class="hero-stat-label">掲載情報数</div></div>
+    <div class="hero-stat"><div><span class="hero-stat-num">4</span><span class="hero-stat-unit">分野</span></div><div class="hero-stat-label">カテゴリ数</div></div>
+    <div class="hero-stat"><div><span class="hero-stat-num">随時</span></div><div class="hero-stat-label">情報更新中</div></div>
   </div>
 </section>
-
-<!-- 実績バー -->
-<div class="stats">
-  <div class="stat">
-    <div><span class="stat-num">23</span><span class="stat-unit">件</span></div>
-    <div class="stat-label">掲載案件数</div>
-  </div>
-  <div class="stat">
-    <div><span class="stat-num">4</span><span class="stat-unit">種</span></div>
-    <div class="stat-label">掲載ジャンル</div>
-  </div>
-  <div class="stat">
-    <div><span class="stat-num">8.3<span class="stat-unit">x</span></span></div>
-    <div class="stat-label">最高ROI</div>
-  </div>
-</div>
-
-<!-- メディア特長 -->
-<section class="section" style="background:#fff;border-bottom:1px solid #eee">
-  <div class="section-label">MEDIA FEATURES</div>
-  <h2 class="section-title">このメディアの特長</h2>
-  <div class="features">
-    <div class="feat">
-      <div class="feat-icon">🎯</div>
-      <div>
-        <div class="feat-title">高ROI案件に特化した情報提供</div>
-        <div class="feat-desc">ROI1.5倍以上の案件のみを厳選掲載。ユーザーにとって価値ある情報だけを届けます。</div>
-      </div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">📱</div>
-      <div>
-        <div class="feat-title">スマートフォン最適化LP</div>
-        <div class="feat-desc">全LPをモバイルファーストで設計。CTAボタンの視認性・クリック率を最大化しています。</div>
-      </div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">⚖️</div>
-      <div>
-        <div class="feat-title">薬機法・景表法に準拠した表記</div>
-        <div class="feat-desc">PR表記・免責事項を徹底管理。広告審査基準に沿ったコンプライアンス対応済みです。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 掲載ジャンル -->
-<section class="section">
-  <div class="section-label">GENRE</div>
-  <h2 class="section-title">掲載ジャンル一覧</h2>
-  <div class="cat-tags"><span class="cat-tag">⭐ その他（10件）</span><span class="cat-tag">💼 転職（6件）</span><span class="cat-tag">📈 金融（5件）</span><span class="cat-tag">🎬 エンタメ（2件）</span></div>
-  <div class="genre-grid">
-      <div class="genre-card">
-        <div class="genre-card-head" style="background:linear-gradient(135deg,#E65100,#FFA726)">
-          <span class="genre-card-icon">⭐</span>
-          <span class="genre-card-name">その他</span>
-        </div>
-        <div class="genre-card-body">
-          <div class="genre-count">10件掲載中</div>
-          <div class="genre-top">最高報酬 <strong>50,000円</strong></div>
-        </div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-card-head" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">
-          <span class="genre-card-icon">💼</span>
-          <span class="genre-card-name">転職</span>
-        </div>
-        <div class="genre-card-body">
-          <div class="genre-count">6件掲載中</div>
-          <div class="genre-top">最高報酬 <strong>78,000円</strong></div>
-        </div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-card-head" style="background:linear-gradient(135deg,#1B5E20,#43A047)">
-          <span class="genre-card-icon">📈</span>
-          <span class="genre-card-name">金融</span>
-        </div>
-        <div class="genre-card-body">
-          <div class="genre-count">5件掲載中</div>
-          <div class="genre-top">最高報酬 <strong>50,000円</strong></div>
-        </div>
-      </div>
-      <div class="genre-card">
-        <div class="genre-card-head" style="background:linear-gradient(135deg,#880E4F,#E91E63)">
-          <span class="genre-card-icon">🎬</span>
-          <span class="genre-card-name">エンタメ</span>
-        </div>
-        <div class="genre-card-body">
-          <div class="genre-count">2件掲載中</div>
-          <div class="genre-top">最高報酬 <strong>16,000円</strong></div>
-        </div>
-      </div>
-  </div>
-</section>
-
-<!-- 掲載までの流れ -->
-<section class="section" style="background:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee">
-  <div class="section-label">FLOW</div>
-  <h2 class="section-title">掲載までの流れ</h2>
-  <div class="flow">
-    <div class="flow-item">
-      <div class="flow-num">1</div>
-      <div class="flow-body">
-        <div class="flow-title">ASPプログラムに申請</div>
-        <div class="flow-desc">A8.net等のASPでプログラムに申請。審査通過後にアフィリエイトリンクを取得します。</div>
-      </div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">2</div>
-      <div class="flow-body">
-        <div class="flow-title">LP作成・リンク設置</div>
-        <div class="flow-desc">案件ごとに最適化したLPを作成し、アフィリエイトリンクを設置します。</div>
-      </div>
-    </div>
-    <div class="flow-item">
-      <div class="flow-num">3</div>
-      <div class="flow-body">
-        <div class="flow-title">Meta/Google広告で集客</div>
-        <div class="flow-desc">ターゲティング広告でユーザーをLPに誘導。ROIを管理しながら運用します。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<div class="cta-section">
-  <h2 class="cta-title">掲載メディアURL</h2>
-  <p class="cta-sub">各案件のLPは下記URLより確認いただけます</p>
-  <a class="cta-url" href="https://ricesan7.github.io/affiliate-lp/">
-    🌐 https://ricesan7.github.io/affiliate-lp/
-  </a>
-  <p class="cta-note">※ 本メディアはアフィリエイト広告掲載を目的として運営されています</p>
-</div>
-
+<nav class="nav-scroll"><a class="nav-item" href="#その他">⭐ その他</a><a class="nav-item" href="#転職">💼 転職</a><a class="nav-item" href="#金融">📈 金融</a><a class="nav-item" href="#エンタメ">🎬 エンタメ</a></nav>
+<section class="cat-section" id="その他"><div class="cat-header" style="background:linear-gradient(135deg,#E65100,#FFA726)"><div class="cat-header-inner"><span class="cat-icon">⭐</span><div><div class="cat-name">その他</div><div class="cat-count">10件の情報を掲載</div></div></div></div><div class="cat-desc">暮らしをより便利・快適にする多彩なサービスや情報をカテゴリを超えてお届けします。</div><div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/資格認定あり・顧客紹介あり・歩合報酬あり-動画教材エディター養成コース参加者募集/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">動画教材エディター養成コース参加者募集</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/空室対策・収益最大化なら-借上げ実績１万室のクロスハウス/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">空室対策・収益最大化なら、借上げ実績１万室のクロスハ…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/auひかり-初期工事費無料-豪華キャンペーン-知らない人はモッタイナイ/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">初期工事費無料知らない人はモッタイナイ！</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/国産-輸入車約300車種-月額1万円台からの新車定額カーリース-サブスク-オリコ/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">国産/輸入車約300車種!月額1万円台からの新車定額…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/MOVE-FORWARD-あたりまえの日常を-感動に-MOVE-eBike/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">『MOVE FORWARD』あたりまえの日常を、感動…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/ボトル2本プレゼント-天然水ウォーターサーバー-U-Premium/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">ボトル2本プレゼント！天然水ウォーターサーバー</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/ahamo光-安定した光回線をコスパ良く-ｄポイント20-000pt/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">安定した光回線をコスパ良く！ｄポイント20,000p…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/合宿免許受付センター/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">合宿免許受付センター</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/Pappy-ワンランク上のマッチングサービス/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">ワンランク上のマッチングサービス</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/業界最速のキャッシュバック還元-更にオプション加入条件なし-auひかりサイト/" target="_blank"><div class="article-cat" style="color:#E65100">⭐ その他</div><div class="article-title">業界最速のキャッシュバック還元！更にオプション加入条…</div><div class="article-link">詳しく見る →</div></a></div></section><section class="cat-section" id="転職"><div class="cat-header" style="background:linear-gradient(135deg,#1565C0,#42A5F5)"><div class="cat-header-inner"><span class="cat-icon">💼</span><div><div class="cat-name">転職</div><div class="cat-count">6件の情報を掲載</div></div></div></div><div class="cat-desc">キャリアアップ・転職を考えるあなたへ。専門エージェントの活用法や業界別の転職ノウハウを紹介します。</div><div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/明光キャリアパートナーズエンジニア転職/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">明光キャリアパートナーズエンジニア転職</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/ツインプロ-会計士・税理士特化の転職エージェントの無料キャリア面談/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">ツインプロ｜会計士・税理士特化の転職エージェントの無…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/ITエンジニアのハイクラス転職なら-TechGo-テックゴー/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">ITエンジニアのハイクラス転職なら</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/建設業界特化-未経験から施工管理職へ-手厚いサポートで資格取得も支援-GKSキャ/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">建設業界特化！未経験から施工管理職へ。手厚いサポート…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/社内SEを目指す方必見-IT・Webエンジニアの転職なら-社内SE転職ナビ/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">社内SEを目指す方必見！IT・Webエンジニアの転職…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/プロと始める-逆転就活-新卒就職エージェントneo/" target="_blank"><div class="article-cat" style="color:#1565C0">💼 転職</div><div class="article-title">プロと始める「逆転就活」</div><div class="article-link">詳しく見る →</div></a></div></section><section class="cat-section" id="金融"><div class="cat-header" style="background:linear-gradient(135deg,#1B5E20,#43A047)"><div class="cat-header-inner"><span class="cat-icon">📈</span><div><div class="cat-name">金融</div><div class="cat-count">5件の情報を掲載</div></div></div></div><div class="cat-desc">資産形成・投資・保険の基礎知識から実践的な活用方法まで、お金に関する情報を幅広くお届けします。</div><div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/株式投資のプロが高騰期待銘柄を絞り込み-旬の厳選10銘柄/" target="_blank"><div class="article-cat" style="color:#1B5E20">📈 金融</div><div class="article-title">株式投資のプロが高騰期待銘柄を絞り込み</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/TOSSY-あらゆる取引がアプリひとつで完結-お得な特典が盛りだくさん/" target="_blank"><div class="article-cat" style="color:#1B5E20">📈 金融</div><div class="article-title">あらゆる取引がアプリひとつで完結</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/妊娠-出産-子育て中の-ママ-のための保険無料相談サービス-ベビープラネット/" target="_blank"><div class="article-cat" style="color:#1B5E20">📈 金融</div><div class="article-title">妊娠〜出産〜子育て中の「ママ」のための保険無料相談サ…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/安定した未来のため資産形成やライフリスクは-ファイナンシャルプランナーに相談-へ/" target="_blank"><div class="article-cat" style="color:#1B5E20">📈 金融</div><div class="article-title">安定した未来のため資産形成やライフリスクはへ</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/がん保険の専門相談サイト-baby-planet-ベビープラネット/" target="_blank"><div class="article-cat" style="color:#1B5E20">📈 金融</div><div class="article-title">がん保険の専門相談サイト</div><div class="article-link">詳しく見る →</div></a></div></section><section class="cat-section" id="エンタメ"><div class="cat-header" style="background:linear-gradient(135deg,#880E4F,#E91E63)"><div class="cat-header-inner"><span class="cat-icon">🎬</span><div><div class="cat-name">エンタメ</div><div class="cat-count">2件の情報を掲載</div></div></div></div><div class="cat-desc">日常をもっと豊かにするエンタメ・趣味・ライフスタイル情報をお届けします。</div><div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/TVCM放映-初回最大30分無料-実力派占い師多数在籍のココナラ電話占いでお悩み/" target="_blank"><div class="article-cat" style="color:#880E4F">🎬 エンタメ</div><div class="article-title">TVCM放映★初回最大30分無料！実力派占い師多数在…</div><div class="article-link">詳しく見る →</div></a><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/初心者向けピアノ講座-30日でマスターするピアノ教本3弾セット/" target="_blank"><div class="article-cat" style="color:#880E4F">🎬 エンタメ</div><div class="article-title">初心者向けピアノ講座</div><div class="article-link">詳しく見る →</div></a></div></section>
 <footer class="footer">
-  <div class="footer-pr">本サイトはアフィリエイト広告（PR）を掲載するメディアです</div>
-  <p>掲載情報はページ作成時点のものです。</p>
-  <p>最新情報は各公式サイトをご確認ください。</p>
+  <div class="footer-logo">DIYstation</div>
+  <div class="footer-pr">本サイトはアフィリエイト広告（PR）を含みます</div>
+  <p>掲載情報はページ作成時点のものです。最新情報は各公式サイトをご確認ください。</p>
+  <p style="margin-top:8px">© 2026 DIYstation</p>
 </footer>
-
 </body>
 </html>
