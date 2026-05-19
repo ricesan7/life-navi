@@ -5,130 +5,171 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="転職・スキルアップ・資産形成・節約など、収入を増やし暮らしを豊かにするための実践情報メディア。">
 <title>DIYstation｜転職・副業・お金の情報メディア</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
+:root{--brand:#0f2d6b;--gold:#f5c842;--bg:#f0f2f7;--radius:14px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Noto Sans JP",sans-serif;background:#F4F6FA;color:#1a1a1a;max-width:520px;margin:0 auto}
-.pr-bar{background:#FFF8DC;border-bottom:2px solid #e8c84a;text-align:center;padding:6px 12px;font-size:10px;font-weight:700;color:#7A5F00}
-.site-header{background:#fff;border-bottom:3px solid #1A3A8F;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-.logo{display:flex;align-items:center;gap:8px}
-.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#1A3A8F,#42A5F5);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#FFD740;font-weight:900;font-size:14px}
-.logo-text{font-size:17px;font-weight:900;color:#1A3A8F}
-.logo-text span{color:#FFD740}
-.logo-sub{font-size:9px;color:#888;margin-top:1px}
-.header-badge{background:#E8F0FF;color:#1A3A8F;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px}
-.hero{background:linear-gradient(160deg,#0a1628 0%,#1A3A8F 60%,#0d2a6b 100%);padding:40px 20px 36px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-100px;right:-80px;width:300px;height:300px;background:rgba(255,255,255,.03);border-radius:50%}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,64,.12);border:1px solid rgba(255,215,64,.3);color:#FFD740;font-size:10px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.08em;margin-bottom:16px}
-.hero-title{color:#fff;font-size:25px;font-weight:900;line-height:1.3;margin-bottom:10px}
-.hero-title em{color:#FFD740;font-style:normal;display:block}
-.hero-desc{color:rgba(255,255,255,.68);font-size:12px;line-height:2;margin-bottom:22px}
-.hero-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:22px}
-.hero-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-size:11px;padding:5px 12px;border-radius:20px;font-weight:700}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.08);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-.stat{padding:14px 8px;text-align:center;border-right:1px solid rgba(255,255,255,.1)}
-.stat:last-child{border-right:none}
-.stat-num{font-size:22px;font-weight:900;color:#FFD740;line-height:1}
-.stat-unit{font-size:10px;color:#FFD740;font-weight:700}
-.stat-label{font-size:10px;color:rgba(255,255,255,.55);margin-top:4px}
-.nav-wrap{background:#fff;border-bottom:1px solid #e8e8e8;padding:10px 12px;overflow-x:auto;display:flex;gap:8px;-webkit-overflow-scrolling:touch}
-.nav-wrap::-webkit-scrollbar{display:none}
-.nav-item{white-space:nowrap;background:#F0F4FF;color:#1A3A8F;font-size:11px;font-weight:700;padding:7px 14px;border-radius:20px;text-decoration:none;flex-shrink:0;transition:all .15s}
-.nav-item:hover{background:#1A3A8F;color:#fff}
-.cat-section{margin:16px 12px;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
-.cat-header{padding:18px 20px}
-.cat-inner{display:flex;align-items:center;gap:14px}
-.cat-icon{font-size:34px;line-height:1}
-.cat-name{color:#fff;font-size:17px;font-weight:900;margin-bottom:4px}
-.cat-tagline{color:rgba(255,255,255,.75);font-size:11px}
-.cat-desc{background:#fff;padding:14px 16px;font-size:12px;color:#555;line-height:1.9;border-bottom:1px solid #eee}
-.article-grid{background:#e8e8e8;display:grid;grid-template-columns:1fr 1fr;gap:1px}
-.article-card{background:#fff;padding:14px 12px;text-decoration:none;color:#1a1a1a;display:flex;flex-direction:column;gap:7px;transition:background .12s}
-.article-card:hover{background:#F5F8FF}
-.article-tag{display:inline-block;font-size:10px;font-weight:700;border:1px solid;padding:2px 8px;border-radius:10px}
-.article-title{font-size:12px;font-weight:700;line-height:1.55;color:#111;flex:1;min-height:38px}
-.article-footer{font-size:11px;font-weight:700;color:#1A3A8F;display:flex;align-items:center;gap:3px}
-.arr{transition:transform .15s}
-.article-card:hover .arr{transform:translateX(3px)}
-.footer{background:#0d1117;color:rgba(255,255,255,.35);font-size:11px;text-align:center;padding:32px 16px;line-height:2.3;margin-top:12px}
-.footer-logo{font-size:18px;font-weight:900;color:rgba(255,255,255,.6);margin-bottom:6px}
-.footer-logo span{color:rgba(255,213,64,.6)}
-.footer-pr{display:inline-block;background:rgba(255,255,255,.06);border-radius:8px;padding:8px 16px;margin-bottom:14px;color:rgba(255,255,255,.55);font-weight:700;font-size:11px}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:#1a1a1a;max-width:480px;margin:0 auto;min-height:100vh}
+
+/* PR bar */
+.pr-bar{background:#fffbea;border-bottom:1px solid #e8d96a;text-align:center;padding:5px 12px;font-size:10px;font-weight:700;color:#7a6000;letter-spacing:.05em}
+
+/* Header */
+.site-header{background:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 1px 0 rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.08)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:34px;height:34px;background:var(--brand);border-radius:10px;display:grid;place-items:center;font-size:16px;font-weight:900;color:var(--gold);letter-spacing:-.5px;box-shadow:0 2px 8px rgba(15,45,107,.35)}
+.logo-text{font-size:16px;font-weight:900;color:var(--brand);line-height:1}
+.logo-text b{color:var(--gold)}
+.logo-sub{font-size:9px;color:#999;margin-top:2px;font-weight:500}
+.header-tag{background:#edf2ff;color:var(--brand);font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;white-space:nowrap}
+
+/* Hero */
+.hero{background:linear-gradient(160deg,#060e1f 0%,#0f2d6b 55%,#0a2050 100%);padding:36px 20px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;bottom:-60px;left:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,.07) 0%,transparent 70%)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:5px;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--gold);font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.1em;margin-bottom:18px}
+.hero-title{color:#fff;font-size:24px;font-weight:900;line-height:1.35;margin-bottom:8px}
+.hero-title em{color:var(--gold);font-style:normal}
+.hero-sub{color:rgba(255,255,255,.6);font-size:12px;line-height:1.9;margin-bottom:24px}
+.hero-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:28px}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.82);font-size:11px;font-weight:700;padding:5px 13px;border-radius:30px}
+.hero-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.kpi{padding:14px 6px;text-align:center}
+.kpi-val{font-size:22px;font-weight:900;color:var(--gold);line-height:1}
+.kpi-unit{font-size:10px;color:var(--gold);font-weight:700}
+.kpi-label{font-size:10px;color:rgba(255,255,255,.45);margin-top:3px}
+
+/* Nav */
+.nav-bar{background:#fff;padding:10px 12px;display:flex;gap:7px;overflow-x:auto;border-bottom:1px solid #e5e8ef;-webkit-overflow-scrolling:touch}
+.nav-bar::-webkit-scrollbar{display:none}
+.nav-pill{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;font-size:11px;font-weight:700;padding:6px 12px;border-radius:30px;text-decoration:none;color:var(--c,#333);background:rgba(0,0,0,.04);border:1.5px solid transparent;transition:all .18s;flex-shrink:0}
+.nav-pill em{background:var(--c,#333);color:#fff;font-style:normal;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:2px}
+.nav-pill:hover{background:var(--c,#333);color:#fff;border-color:var(--c,#333)}
+.nav-pill:hover em{background:#fff;color:var(--c,#333)}
+
+/* Sections */
+.section{margin:14px 10px;border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.09),0 0 0 1px rgba(0,0,0,.04)}
+.section-head{padding:16px 18px}
+.section-head-inner{display:flex;align-items:center;gap:12px}
+.section-icon{font-size:28px;line-height:1;flex-shrink:0}
+.section-name{color:#fff;font-size:16px;font-weight:900;line-height:1.2}
+.section-tagline{color:rgba(255,255,255,.65);font-size:10px;margin-top:3px;font-weight:500}
+.section-count{margin-left:auto;background:rgba(255,255,255,.18);color:#fff;font-size:11px;font-weight:900;padding:3px 10px;border-radius:20px;flex-shrink:0}
+.section-desc{background:#fff;padding:12px 16px;font-size:11px;color:#666;line-height:1.85;border-bottom:1px solid #efefef}
+
+/* Cards */
+.card-grid{background:#ebebeb;display:grid;grid-template-columns:1fr 1fr;gap:1px}
+.card{background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#1a1a1a;transition:background .15s,transform .15s;position:relative;overflow:hidden}
+.card:active{background:#f7f9ff;transform:scale(.98)}
+.card-accent{height:4px;width:100%}
+.card-icon{display:none}
+.card-body{padding:12px 10px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-tag{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;width:fit-content}
+.card-title{font-size:11.5px;font-weight:700;line-height:1.6;color:#111;flex:1;min-height:40px}
+.card-cta{font-size:11px;font-weight:700;display:flex;align-items:center;gap:2px;margin-top:2px}
+.arr{font-size:14px;transition:transform .15s}
+.card:hover .arr{transform:translateX(3px)}
+
+/* Footer */
+.footer{background:#090f1a;padding:32px 16px 40px;text-align:center;margin-top:14px}
+.footer-logo{font-size:20px;font-weight:900;color:rgba(255,255,255,.5);margin-bottom:6px}
+.footer-logo b{color:rgba(245,200,66,.6)}
+.footer-pr{display:inline-block;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:7px 16px;margin-bottom:16px;color:rgba(255,255,255,.4);font-size:10px;font-weight:700}
+.footer-copy{font-size:10px;color:rgba(255,255,255,.25);line-height:2.2}
 </style>
 </head>
 <body>
+
 <div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
+
 <header class="site-header">
-  <div class="logo">
-    <div class="logo-icon">D</div>
+  <a class="logo" href="#">
+    <div class="logo-mark">D</div>
     <div>
-      <div class="logo-text">DIY<span>station</span></div>
+      <div class="logo-text">DIY<b>station</b></div>
       <div class="logo-sub">転職・副業・お金の情報メディア</div>
     </div>
-  </div>
-  <div class="header-badge">📚 情報メディア</div>
+  </a>
+  <div class="header-tag">📚 情報メディア</div>
 </header>
+
 <section class="hero">
-  <div class="hero-badge">✦ LIFE UPGRADE MEDIA</div>
-  <h1 class="hero-title">収入を増やし、<em>人生を変える情報</em></h1>
-  <p class="hero-desc">転職・スキルアップ・資産形成・節約術まで<br>あなたのステージアップを応援する<br>実践的な情報をお届けします。</p>
-  <div class="hero-tags">
-    <span class="hero-tag">💼 転職・キャリア</span>
-    <span class="hero-tag">🎓 副業・スキルUP</span>
-    <span class="hero-tag">📈 資産形成</span>
-    <span class="hero-tag">✨ 節約・生活最適化</span>
+  <div class="hero-eyebrow">✦ LIFE UPGRADE MEDIA</div>
+  <h1 class="hero-title">収入を増やし、<br><em>人生を変える情報</em></h1>
+  <p class="hero-sub">転職・スキルアップ・資産形成・節約術まで<br>あなたのステージアップを応援する実践情報</p>
+  <div class="hero-chips">
+    <span class="chip">💼 転職・キャリア</span>
+    <span class="chip">🎓 副業・スキルUP</span>
+    <span class="chip">📈 資産形成</span>
+    <span class="chip">✨ 暮らし最適化</span>
   </div>
-  <div class="hero-stats">
-    <div class="stat"><div><span class="stat-num">2</span><span class="stat-unit">件</span></div><div class="stat-label">掲載情報</div></div>
-    <div class="stat"><div><span class="stat-num">5</span><span class="stat-unit">分野</span></div><div class="stat-label">カテゴリ</div></div>
-    <div class="stat"><div><span class="stat-num">随時</span></div><div class="stat-label">情報更新</div></div>
+  <div class="hero-kpi">
+    <div class="kpi"><div class="kpi-val">2<span class="kpi-unit">件</span></div><div class="kpi-label">掲載情報</div></div>
+    <div class="kpi"><div class="kpi-val">5<span class="kpi-unit">分野</span></div><div class="kpi-label">カテゴリ</div></div>
+    <div class="kpi"><div class="kpi-val">随時</div><div class="kpi-label">情報更新</div></div>
   </div>
 </section>
-<nav class="nav-wrap"><a class="nav-item" href="#転職・キャリアアップ">💼 転職・キャリアアップ（1）</a>
-<a class="nav-item" href="#暮らしをスマートに">🏠 暮らしをスマートに（1）</a></nav>
-<section class="cat-section" id="転職・キャリアアップ">
-  <div class="cat-header" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">
-    <div class="cat-inner">
-      <div class="cat-icon">💼</div>
+
+<nav class="nav-bar"><a class="nav-pill" href="#転職・キャリアアップ" style="--c:#1a56c4">💼<span>転職・キャリアアップ</span><em>1</em></a><a class="nav-pill" href="#暮らしをスマートに" style="--c:#c04a00">🏠<span>暮らしをスマートに</span><em>1</em></a></nav>
+
+<section class="section" id="転職・キャリアアップ">
+  <div class="section-head" style="background:linear-gradient(135deg,#0f2d6b 0%,#1a56c4 100%)">
+    <div class="section-head-inner">
+      <span class="section-icon">💼</span>
       <div>
-        <div class="cat-name">転職・キャリアアップ</div>
-        <div class="cat-tagline">年収アップ・キャリアチェンジを実現する</div>
+        <div class="section-name">転職・キャリアアップ</div>
+        <div class="section-tagline">年収アップ・キャリアチェンジを実現する</div>
       </div>
+      <span class="section-count">1</span>
     </div>
   </div>
-  <div class="cat-desc">転職エージェントの選び方から業界別の年収相場、未経験からのキャリアチェンジ方法まで。自分らしい働き方を実現するための実践情報を発信します。</div>
-  <div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/meikou-career/" target="_blank">
-  <div class="article-tag" style="color:#1565C0;border-color:#1565C0">💼 転職・キャリアアップ</div>
-  <div class="article-title">ITエンジニア転職エージェントの選び方・活用術</div>
-  <div class="article-footer">詳しく読む <span class="arr">→</span></div>
+  <div class="section-desc">転職エージェントの選び方から業界別の年収相場、未経験からのキャリアチェンジまで。自分らしい働き方を実現するための実践情報を発信します。</div>
+  <div class="card-grid"><a class="card" href="https://ricesan7.github.io/affiliate-lp/meikou-career/" target="_blank">
+  <div class="card-accent" style="background:linear-gradient(135deg,#0f2d6b 0%,#1a56c4 100%)">
+    <span class="card-icon">💼</span>
+  </div>
+  <div class="card-body">
+    <div class="card-tag" style="color:#1a56c4;background:#e8f0ff">転職・キャリアアップ</div>
+    <div class="card-title">ITエンジニア転職エージェントの選び方・活用術</div>
+    <div class="card-cta" style="color:#1a56c4">詳しく読む <span class="arr">›</span></div>
+  </div>
 </a></div>
 </section>
 
 
 
-<section class="cat-section" id="暮らしをスマートに">
-  <div class="cat-header" style="background:linear-gradient(135deg,#E65100,#FF8A65)">
-    <div class="cat-inner">
-      <div class="cat-icon">🏠</div>
+<section class="section" id="暮らしをスマートに">
+  <div class="section-head" style="background:linear-gradient(135deg,#7a2600 0%,#d4520a 100%)">
+    <div class="section-head-inner">
+      <span class="section-icon">🏠</span>
       <div>
-        <div class="cat-name">暮らしをスマートに</div>
-        <div class="cat-tagline">生活コストを下げ、快適さを上げる</div>
+        <div class="section-name">暮らしをスマートに</div>
+        <div class="section-tagline">生活コストを下げ、快適さを上げる</div>
       </div>
+      <span class="section-count">1</span>
     </div>
   </div>
-  <div class="cat-desc">通信・保険・住まい・モビリティなど、毎日の生活コストを見直すヒントが満載。賢い選択で暮らしの質を底上げする情報を発信します。</div>
-  <div class="article-grid"><a class="article-card" href="https://ricesan7.github.io/affiliate-lp/video-editor/" target="_blank">
-  <div class="article-tag" style="color:#E65100;border-color:#E65100">🏠 暮らしをスマートに</div>
-  <div class="article-title">動画編集スキルを身につけて在宅で副業を始める方法</div>
-  <div class="article-footer">詳しく読む <span class="arr">→</span></div>
+  <div class="section-desc">通信・保険・住まい・モビリティなど、毎日の生活コストを見直すヒントが満載。賢い選択で暮らしの質を底上げします。</div>
+  <div class="card-grid"><a class="card" href="https://ricesan7.github.io/affiliate-lp/video-editor/" target="_blank">
+  <div class="card-accent" style="background:linear-gradient(135deg,#7a2600 0%,#d4520a 100%)">
+    <span class="card-icon">🏠</span>
+  </div>
+  <div class="card-body">
+    <div class="card-tag" style="color:#c04a00;background:#fff0e6">暮らしをスマートに</div>
+    <div class="card-title">動画編集スキルを身につけて在宅で副業を始める方法</div>
+    <div class="card-cta" style="color:#c04a00">詳しく読む <span class="arr">›</span></div>
+  </div>
 </a></div>
 </section>
+
 <footer class="footer">
-  <div class="footer-logo">DIY<span>station</span></div>
+  <div class="footer-logo">DIY<b>station</b></div>
   <div class="footer-pr">【PR】本サイトはアフィリエイト広告を含みます</div>
-  <div>© 2025 DIYstation. All rights reserved.</div>
-  <div>掲載情報は予告なく変更される場合があります</div>
-  <div style="margin-top:8px;font-size:10px">最終更新: 2026年05月19日</div>
+  <div class="footer-copy">
+    © 2025 DIYstation. All rights reserved.<br>
+    掲載情報は予告なく変更される場合があります<br>
+    最終更新: 2026年05月19日
+  </div>
 </footer>
+
 </body>
 </html>
