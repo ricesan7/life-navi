@@ -2,224 +2,267 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>アフィリエイト案件一覧 | LP集</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>アフィリエイト案件LP一覧</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Noto Sans JP",sans-serif;background:#f0f2f5;color:#222}
-.header{background:linear-gradient(135deg,#1a3a6b,#0d2247);padding:24px 16px;text-align:center}
-.header h1{color:#fff;font-size:20px;font-weight:900;margin-bottom:6px}
-.header p{color:rgba(255,255,255,0.7);font-size:12px}
-.pr-bar{background:#fff8dc;border-bottom:2px solid #f5c842;text-align:center;padding:7px;font-size:11px;font-weight:700;color:#7a5f00}
-.count-bar{background:#fff;padding:12px 16px;font-size:13px;font-weight:700;color:#555;border-bottom:1px solid #eee}
-.count-bar span{color:#1a6fff;font-size:18px;font-weight:900}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
-.card{background:#fff;border-radius:12px;overflow:hidden;text-decoration:none;color:#222;box-shadow:0 2px 10px rgba(0,0,0,0.08);transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.14)}
-.card-genre{padding:6px 10px;color:#fff;font-size:11px;font-weight:700}
-.card-brand{padding:10px 10px 6px;font-size:12px;font-weight:700;line-height:1.4;min-height:54px}
-.card-meta{padding:0 10px 12px;display:flex;flex-direction:column;gap:3px}
-.reward{font-size:12px;font-weight:900;color:#e53935}
-.roi{font-size:11px;color:#888}
-.footer{background:#1a1a1a;color:rgba(255,255,255,0.45);font-size:11px;text-align:center;padding:20px 16px;line-height:2}
+body{font-family:"Noto Sans JP",sans-serif;background:#F5F7FA;color:#222;max-width:520px;margin:0 auto}
+
+/* PRバー */
+.pr-bar{background:#FFF8DC;border-bottom:2px solid #F5C842;text-align:center;padding:7px 12px;font-size:11px;font-weight:700;color:#7A5F00;letter-spacing:.04em}
+
+/* ヘッダー */
+.hero-header{background:linear-gradient(160deg,#0D1B4B 0%,#1A3A8F 60%,#0D2F6E 100%);padding:28px 20px 24px;position:relative;overflow:hidden}
+.hero-header::before{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(255,255,255,.04);border-radius:50%}
+.hero-header::after{content:"";position:absolute;bottom:-20px;left:-20px;width:120px;height:120px;background:rgba(255,255,255,.03);border-radius:50%}
+.hero-label{display:inline-block;background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);font-size:10px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.08em;margin-bottom:10px}
+.hero-title{color:#fff;font-size:22px;font-weight:900;line-height:1.3;margin-bottom:6px}
+.hero-title em{color:#FFD740;font-style:normal}
+.hero-sub{color:rgba(255,255,255,.65);font-size:12px}
+
+/* 統計カード */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:16px}
+.stat-card{background:#fff;border-radius:12px;padding:12px 10px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.stat-num{font-size:22px;font-weight:900;color:#1A3A8F;line-height:1}
+.stat-unit{font-size:10px;font-weight:700;color:#1A3A8F}
+.stat-label{font-size:10px;color:#888;margin-top:4px}
+
+/* カテゴリーセクション */
+.cat-section{margin:0 12px 16px;border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.1)}
+.cat-header{display:flex;align-items:center;gap:14px;padding:14px 18px}
+.cat-icon{font-size:30px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.cat-name{color:#fff;font-size:16px;font-weight:900}
+.cat-count{color:rgba(255,255,255,.75);font-size:11px;margin-top:2px}
+.item-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+
+/* 案件カード */
+.item-card{background:#fff;border-radius:10px;padding:12px;text-decoration:none;color:#222;display:flex;flex-direction:column;gap:4px;box-shadow:0 1px 6px rgba(0,0,0,.07);transition:transform .15s,box-shadow .15s}
+.item-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.14)}
+.item-reward{font-size:14px;font-weight:900;color:#E53935}
+.item-name{font-size:11px;font-weight:700;color:#333;line-height:1.4;min-height:32px}
+.item-roi{font-size:11px;color:#888}
+.item-arrow{margin-top:4px;font-size:10px;font-weight:700;color:#1A3A8F;background:#E3F2FD;padding:4px 8px;border-radius:20px;text-align:center}
+
+/* フッター */
+.footer{background:#1A1A1A;color:rgba(255,255,255,.4);font-size:11px;text-align:center;padding:24px 16px;line-height:2;margin-top:8px}
+.footer-pr{background:rgba(255,255,255,.08);border-radius:6px;padding:8px 12px;margin-bottom:12px;color:rgba(255,255,255,.7);font-weight:700;font-size:12px}
 </style>
 </head>
 <body>
+
 <div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
-<div class="header">
-  <h1>📋 アフィリエイト案件 LP一覧</h1>
-  <p>高ROI採用案件の紹介ページ集</p>
+
+<header class="hero-header">
+  <div class="hero-label">📋 AFFILIATE LP INDEX</div>
+  <h1 class="hero-title">高ROI案件<em>LP</em>一覧</h1>
+  <p class="hero-sub">カテゴリ別に厳選した採用案件をご紹介</p>
+</header>
+
+<div class="stats">
+  <div class="stat-card">
+    <div><span class="stat-num">23</span><span class="stat-unit">件</span></div>
+    <div class="stat-label">掲載案件数</div>
+  </div>
+  <div class="stat-card">
+    <div><span class="stat-num">4</span><span class="stat-unit">種</span></div>
+    <div class="stat-label">カテゴリ数</div>
+  </div>
+  <div class="stat-card">
+    <div><span class="stat-num">8.3<span class="stat-unit">x</span></span></div>
+    <div class="stat-label">最高ROI</div>
+  </div>
 </div>
-<div class="count-bar">全 <span>23</span> 件掲載中</div>
-<div class="grid">
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/資格認定あり・顧客紹介あり・歩合報酬あり-動画教材エディター養成コース参加者募集/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">【資格認定あり・顧客紹介あり・歩合報酬あり】動画教材エデ</div>
-        <div class="card-meta">
-          <span class="reward">💴 50,000円</span>
-          <span class="roi">ROI 8.3x</span>
+
+
+    <section class="cat-section">
+      <div class="cat-header" style="background:linear-gradient(135deg,#E65100,#FFA726)">
+        <span class="cat-icon">⭐</span>
+        <div class="cat-info">
+          <div class="cat-name">その他</div>
+          <div class="cat-count">10件掲載</div>
         </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/明光キャリアパートナーズエンジニア転職/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">明光キャリアパートナーズエンジニア転職</div>
-        <div class="card-meta">
-          <span class="reward">💴 78,000円</span>
-          <span class="roi">ROI 7.8x</span>
+      </div>
+      <div class="item-grid" style="background:#FFF3E0">
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/資格認定あり・顧客紹介あり・歩合報酬あり-動画教材エディター養成コース参加者募集/" target="_blank">
+          <div class="item-reward">50,000円</div>
+          <div class="item-name">【資格認定あり・顧客紹介あり・歩合報酬あり】…</div>
+          <div class="item-roi">ROI 8.3x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/空室対策・収益最大化なら-借上げ実績１万室のクロスハウス/" target="_blank">
+          <div class="item-reward">35,000円</div>
+          <div class="item-name">空室対策・収益最大化なら、借上げ実績１万室の…</div>
+          <div class="item-roi">ROI 5.8x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/auひかり-初期工事費無料-豪華キャンペーン-知らない人はモッタイナイ/" target="_blank">
+          <div class="item-reward">30,000円</div>
+          <div class="item-name">【auひかり】初期工事費無料！豪華キャンペー…</div>
+          <div class="item-roi">ROI 5.0x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/国産-輸入車約300車種-月額1万円台からの新車定額カーリース-サブスク-オリコ/" target="_blank">
+          <div class="item-reward">30,000円</div>
+          <div class="item-name">国産/輸入車約300車種!月額1万円台からの…</div>
+          <div class="item-roi">ROI 5.0x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/MOVE-FORWARD-あたりまえの日常を-感動に-MOVE-eBike/" target="_blank">
+          <div class="item-reward">15,000円</div>
+          <div class="item-name">『MOVE FORWARD』あたりまえの日常…</div>
+          <div class="item-roi">ROI 2.5x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/ボトル2本プレゼント-天然水ウォーターサーバー-U-Premium/" target="_blank">
+          <div class="item-reward">15,000円</div>
+          <div class="item-name">ボトル2本プレゼント！天然水ウォーターサーバ…</div>
+          <div class="item-roi">ROI 2.5x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/ahamo光-安定した光回線をコスパ良く-ｄポイント20-000pt/" target="_blank">
+          <div class="item-reward">13,500円</div>
+          <div class="item-name">【ahamo光】安定した光回線をコスパ良く！…</div>
+          <div class="item-roi">ROI 2.2x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/合宿免許受付センター/" target="_blank">
+          <div class="item-reward">12,000円</div>
+          <div class="item-name">合宿免許受付センター</div>
+          <div class="item-roi">ROI 2.0x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/Pappy-ワンランク上のマッチングサービス/" target="_blank">
+          <div class="item-reward">10,900円</div>
+          <div class="item-name">【Pappy】ワンランク上のマッチングサービ…</div>
+          <div class="item-roi">ROI 1.8x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/業界最速のキャッシュバック還元-更にオプション加入条件なし-auひかりサイト/" target="_blank">
+          <div class="item-reward">10,000円</div>
+          <div class="item-name">業界最速のキャッシュバック還元！更にオプショ…</div>
+          <div class="item-roi">ROI 1.7x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+      </div>
+    </section>
+    <section class="cat-section">
+      <div class="cat-header" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">
+        <span class="cat-icon">💼</span>
+        <div class="cat-info">
+          <div class="cat-name">転職</div>
+          <div class="cat-count">6件掲載</div>
         </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/ツインプロ-会計士・税理士特化の転職エージェントの無料キャリア面談/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">ツインプロ｜会計士・税理士特化の転職エージェントの無料キ</div>
-        <div class="card-meta">
-          <span class="reward">💴 75,200円</span>
-          <span class="roi">ROI 7.5x</span>
+      </div>
+      <div class="item-grid" style="background:#E3F2FD">
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/明光キャリアパートナーズエンジニア転職/" target="_blank">
+          <div class="item-reward">78,000円</div>
+          <div class="item-name">明光キャリアパートナーズエンジニア転職</div>
+          <div class="item-roi">ROI 7.8x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/ツインプロ-会計士・税理士特化の転職エージェントの無料キャリア面談/" target="_blank">
+          <div class="item-reward">75,200円</div>
+          <div class="item-name">ツインプロ｜会計士・税理士特化の転職エージェ…</div>
+          <div class="item-roi">ROI 7.5x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/ITエンジニアのハイクラス転職なら-TechGo-テックゴー/" target="_blank">
+          <div class="item-reward">45,000円</div>
+          <div class="item-name">ITエンジニアのハイクラス転職なら【Tech…</div>
+          <div class="item-roi">ROI 4.5x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/建設業界特化-未経験から施工管理職へ-手厚いサポートで資格取得も支援-GKSキャ/" target="_blank">
+          <div class="item-reward">35,000円</div>
+          <div class="item-name">建設業界特化！未経験から施工管理職へ。手厚い…</div>
+          <div class="item-roi">ROI 3.5x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/社内SEを目指す方必見-IT・Webエンジニアの転職なら-社内SE転職ナビ/" target="_blank">
+          <div class="item-reward">18,000円</div>
+          <div class="item-name">社内SEを目指す方必見！IT・Webエンジニ…</div>
+          <div class="item-roi">ROI 1.8x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/プロと始める-逆転就活-新卒就職エージェントneo/" target="_blank">
+          <div class="item-reward">17,293円</div>
+          <div class="item-name">プロと始める「逆転就活」【新卒就職エージェン…</div>
+          <div class="item-roi">ROI 1.7x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+      </div>
+    </section>
+    <section class="cat-section">
+      <div class="cat-header" style="background:linear-gradient(135deg,#1B5E20,#43A047)">
+        <span class="cat-icon">📈</span>
+        <div class="cat-info">
+          <div class="cat-name">金融</div>
+          <div class="cat-count">5件掲載</div>
         </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/株式投資のプロが高騰期待銘柄を絞り込み-旬の厳選10銘柄/" target="_blank">
-        <div class="card-genre" style="background:#1a3a6f">📈 金融</div>
-        <div class="card-brand">株式投資のプロが高騰期待銘柄を絞り込み【旬の厳選10銘柄</div>
-        <div class="card-meta">
-          <span class="reward">💴 50,000円</span>
-          <span class="roi">ROI 6.2x</span>
+      </div>
+      <div class="item-grid" style="background:#E8F5E9">
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/株式投資のプロが高騰期待銘柄を絞り込み-旬の厳選10銘柄/" target="_blank">
+          <div class="item-reward">50,000円</div>
+          <div class="item-name">株式投資のプロが高騰期待銘柄を絞り込み【旬の…</div>
+          <div class="item-roi">ROI 6.2x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/TOSSY-あらゆる取引がアプリひとつで完結-お得な特典が盛りだくさん/" target="_blank">
+          <div class="item-reward">15,000円</div>
+          <div class="item-name">【TOSSY】あらゆる取引がアプリひとつで完…</div>
+          <div class="item-roi">ROI 1.9x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/妊娠-出産-子育て中の-ママ-のための保険無料相談サービス-ベビープラネット/" target="_blank">
+          <div class="item-reward">13,533円</div>
+          <div class="item-name">妊娠〜出産〜子育て中の「ママ」のための保険無…</div>
+          <div class="item-roi">ROI 1.7x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/安定した未来のため資産形成やライフリスクは-ファイナンシャルプランナーに相談-へ/" target="_blank">
+          <div class="item-reward">13,000円</div>
+          <div class="item-name">安定した未来のため資産形成やライフリスクは【…</div>
+          <div class="item-roi">ROI 1.6x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/がん保険の専門相談サイト-baby-planet-ベビープラネット/" target="_blank">
+          <div class="item-reward">13,000円</div>
+          <div class="item-name">がん保険の専門相談サイト【baby plan…</div>
+          <div class="item-roi">ROI 1.6x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+      </div>
+    </section>
+    <section class="cat-section">
+      <div class="cat-header" style="background:linear-gradient(135deg,#880E4F,#E91E63)">
+        <span class="cat-icon">🎬</span>
+        <div class="cat-info">
+          <div class="cat-name">エンタメ</div>
+          <div class="cat-count">2件掲載</div>
         </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/空室対策・収益最大化なら-借上げ実績１万室のクロスハウス/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">空室対策・収益最大化なら、借上げ実績１万室のクロスハウス</div>
-        <div class="card-meta">
-          <span class="reward">💴 35,000円</span>
-          <span class="roi">ROI 5.8x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/auひかり-初期工事費無料-豪華キャンペーン-知らない人はモッタイナイ/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">【auひかり】初期工事費無料！豪華キャンペーン！知らない</div>
-        <div class="card-meta">
-          <span class="reward">💴 30,000円</span>
-          <span class="roi">ROI 5.0x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/国産-輸入車約300車種-月額1万円台からの新車定額カーリース-サブスク-オリコ/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">国産/輸入車約300車種!月額1万円台からの新車定額カー</div>
-        <div class="card-meta">
-          <span class="reward">💴 30,000円</span>
-          <span class="roi">ROI 5.0x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/ITエンジニアのハイクラス転職なら-TechGo-テックゴー/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">ITエンジニアのハイクラス転職なら【TechGo（テック</div>
-        <div class="card-meta">
-          <span class="reward">💴 45,000円</span>
-          <span class="roi">ROI 4.5x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/建設業界特化-未経験から施工管理職へ-手厚いサポートで資格取得も支援-GKSキャ/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">建設業界特化！未経験から施工管理職へ。手厚いサポートで資</div>
-        <div class="card-meta">
-          <span class="reward">💴 35,000円</span>
-          <span class="roi">ROI 3.5x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/TVCM放映-初回最大30分無料-実力派占い師多数在籍のココナラ電話占いでお悩み/" target="_blank">
-        <div class="card-genre" style="background:#7b1fa2">🎬 エンタメ</div>
-        <div class="card-brand">TVCM放映★初回最大30分無料！実力派占い師多数在籍の</div>
-        <div class="card-meta">
-          <span class="reward">💴 16,000円</span>
-          <span class="roi">ROI 2.7x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/MOVE-FORWARD-あたりまえの日常を-感動に-MOVE-eBike/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">『MOVE FORWARD』あたりまえの日常を、感動に。</div>
-        <div class="card-meta">
-          <span class="reward">💴 15,000円</span>
-          <span class="roi">ROI 2.5x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/ボトル2本プレゼント-天然水ウォーターサーバー-U-Premium/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">ボトル2本プレゼント！天然水ウォーターサーバー【U-Pr</div>
-        <div class="card-meta">
-          <span class="reward">💴 15,000円</span>
-          <span class="roi">ROI 2.5x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/ahamo光-安定した光回線をコスパ良く-ｄポイント20-000pt/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">【ahamo光】安定した光回線をコスパ良く！ｄポイント2</div>
-        <div class="card-meta">
-          <span class="reward">💴 13,500円</span>
-          <span class="roi">ROI 2.2x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/合宿免許受付センター/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">合宿免許受付センター</div>
-        <div class="card-meta">
-          <span class="reward">💴 12,000円</span>
-          <span class="roi">ROI 2.0x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/TOSSY-あらゆる取引がアプリひとつで完結-お得な特典が盛りだくさん/" target="_blank">
-        <div class="card-genre" style="background:#1a3a6f">📈 金融</div>
-        <div class="card-brand">【TOSSY】あらゆる取引がアプリひとつで完結！お得な特</div>
-        <div class="card-meta">
-          <span class="reward">💴 15,000円</span>
-          <span class="roi">ROI 1.9x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/Pappy-ワンランク上のマッチングサービス/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">【Pappy】ワンランク上のマッチングサービス</div>
-        <div class="card-meta">
-          <span class="reward">💴 10,900円</span>
-          <span class="roi">ROI 1.8x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/初心者向けピアノ講座-30日でマスターするピアノ教本3弾セット/" target="_blank">
-        <div class="card-genre" style="background:#7b1fa2">🎬 エンタメ</div>
-        <div class="card-brand">初心者向けピアノ講座【30日でマスターするピアノ教本3弾</div>
-        <div class="card-meta">
-          <span class="reward">💴 10,824円</span>
-          <span class="roi">ROI 1.8x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/社内SEを目指す方必見-IT・Webエンジニアの転職なら-社内SE転職ナビ/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">社内SEを目指す方必見！IT・Webエンジニアの転職なら</div>
-        <div class="card-meta">
-          <span class="reward">💴 18,000円</span>
-          <span class="roi">ROI 1.8x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/プロと始める-逆転就活-新卒就職エージェントneo/" target="_blank">
-        <div class="card-genre" style="background:#1a6fff">💼 転職</div>
-        <div class="card-brand">プロと始める「逆転就活」【新卒就職エージェントneo】</div>
-        <div class="card-meta">
-          <span class="reward">💴 17,293円</span>
-          <span class="roi">ROI 1.7x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/妊娠-出産-子育て中の-ママ-のための保険無料相談サービス-ベビープラネット/" target="_blank">
-        <div class="card-genre" style="background:#1a3a6f">📈 金融</div>
-        <div class="card-brand">妊娠〜出産〜子育て中の「ママ」のための保険無料相談サービ</div>
-        <div class="card-meta">
-          <span class="reward">💴 13,533円</span>
-          <span class="roi">ROI 1.7x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/業界最速のキャッシュバック還元-更にオプション加入条件なし-auひかりサイト/" target="_blank">
-        <div class="card-genre" style="background:#ff8c00">⭐ その他</div>
-        <div class="card-brand">業界最速のキャッシュバック還元！更にオプション加入条件な</div>
-        <div class="card-meta">
-          <span class="reward">💴 10,000円</span>
-          <span class="roi">ROI 1.7x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/安定した未来のため資産形成やライフリスクは-ファイナンシャルプランナーに相談-へ/" target="_blank">
-        <div class="card-genre" style="background:#1a3a6f">📈 金融</div>
-        <div class="card-brand">安定した未来のため資産形成やライフリスクは【ファイナンシ</div>
-        <div class="card-meta">
-          <span class="reward">💴 13,000円</span>
-          <span class="roi">ROI 1.6x</span>
-        </div>
-      </a>
-      <a class="card" href="https://ricesan7.github.io/affiliate-lp/がん保険の専門相談サイト-baby-planet-ベビープラネット/" target="_blank">
-        <div class="card-genre" style="background:#1a3a6f">📈 金融</div>
-        <div class="card-brand">がん保険の専門相談サイト【baby planet（ベビー</div>
-        <div class="card-meta">
-          <span class="reward">💴 13,000円</span>
-          <span class="roi">ROI 1.6x</span>
-        </div>
-      </a></div>
+      </div>
+      <div class="item-grid" style="background:#FCE4EC">
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/TVCM放映-初回最大30分無料-実力派占い師多数在籍のココナラ電話占いでお悩み/" target="_blank">
+          <div class="item-reward">16,000円</div>
+          <div class="item-name">TVCM放映★初回最大30分無料！実力派占い…</div>
+          <div class="item-roi">ROI 2.7x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+        <a class="item-card" href="https://ricesan7.github.io/affiliate-lp/初心者向けピアノ講座-30日でマスターするピアノ教本3弾セット/" target="_blank">
+          <div class="item-reward">10,824円</div>
+          <div class="item-name">初心者向けピアノ講座【30日でマスターするピ…</div>
+          <div class="item-roi">ROI 1.8x</div>
+          <div class="item-arrow">LP を見る →</div>
+        </a>
+      </div>
+    </section>
+
 <footer class="footer">
-  <p>本サイトはアフィリエイト広告（PR）を含みます</p>
-  <p>掲載情報はページ作成時点のものです。最新情報は各公式サイトをご確認ください。</p>
+  <div class="footer-pr">本サイトはアフィリエイト広告（PR）を含みます</div>
+  <p>掲載情報はページ作成時点のものです。</p>
+  <p>最新情報は各公式サイトをご確認ください。</p>
 </footer>
+
 </body>
 </html>
