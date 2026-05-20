@@ -89,14 +89,14 @@
   .cta-btn:active { transform: translateY(0); }
 
   /* リンク未設定時（準備中）スタイル */
-  .cta-btn--pending {
+  .cta-btn--active {
     background: linear-gradient(135deg,#aaa,#888) !important;
     box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
     cursor: default;
     animation: none;
   }
-  .cta-btn--pending::before { display: none; }
-  .cta-btn-wrap:has(.cta-btn--pending) { animation: none; }
+  .cta-btn--active::before { display: none; }
+  .cta-btn-wrap:has(.cta-btn--active) { animation: none; }
 
   .cta-sub {
     margin-top: 12px;
@@ -115,9 +115,9 @@
   <!-- CTAボタン（HTML実装：shimmer + pulse） -->
   <div class="cta-area">
     <div class="cta-btn-wrap">
-      <a class="cta-btn cta-btn--pending"
+      <a class="cta-btn cta-btn--active"
          href="https://px.a8.net/svt/ejp?a8mat=4B3U78+9SGNOA+5PQE+60H7M" target="_blank" rel="nofollow noopener"
-         onclick="return false;">
+        >
         🔜 今すぐ詳細を確認する
       </a>
     </div>
