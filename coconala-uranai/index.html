@@ -101,13 +101,13 @@
   }
 
   /* CTA active: orange + shine */
-  .cta-btn--active {
+  . {
     background: linear-gradient(135deg,#ff8c00,#ff4500) !important;
     box-shadow: 0 6px 28px rgba(255,100,0,0.5) !important;
     cursor: pointer !important;
     animation: none !important;
   }
-  .cta-btn--active::before {
+  .::before {
     display: block !important;
     content: '' !important;
     position: absolute !important;
@@ -121,7 +121,7 @@
     60% { left: 125%; }
     100%{ left: 125%; }
   }
-  .cta-btn-wrap:has(.cta-btn--active) { animation: pulse-ring 2s infinite !important; }
+  .cta-btn-wrap:has(.) { animation: pulse-ring 2s infinite !important; }
 
 
   /* ===== BACK BUTTON ===== */
@@ -164,7 +164,7 @@
   <!-- CTAボタン（HTML実装：shimmer + pulse） -->
   <div class="cta-area">
     <div class="cta-btn-wrap">
-      <a class="cta-btn cta-btn--active"
+      <a class="cta-btn"
          href="https://px.a8.net/svt/ejp?a8mat=4B3U78+9OAMFU+2PEO+BYLJM" target="_blank" rel="nofollow noopener"
         >
         🔜 今すぐ詳細を確認する
