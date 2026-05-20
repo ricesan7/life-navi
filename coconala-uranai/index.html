@@ -89,14 +89,9 @@
   .cta-btn:active { transform: translateY(0); }
 
   /* リンク未設定時（準備中）スタイル */
-  .cta-btn--active {
-    background: linear-gradient(135deg,#aaa,#888) !important;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
-    cursor: default;
-    animation: none;
-  }
-  .cta-btn--active::before { display: none; }
-  .cta-btn-wrap:has(.cta-btn--active) { animation: none; }
+  
+  
+  
 
   .cta-sub {
     margin-top: 12px;
@@ -105,47 +100,28 @@
     letter-spacing: 0.03em;
   }
 
-/* ===== CTA BUTTON OVERRIDE ===== */
-.cta-btn--active,
-a.cta-btn--active {
-  display: inline-block;
-  position: relative;
-  padding: 18px 48px;
-  background: linear-gradient(135deg, #ff8c00 0%, #ff5500 100%);
-  color: #fff !important;
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none !important;
-  box-shadow: 0 6px 24px rgba(255,100,0,0.45);
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.cta-btn--active::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
-  animation: cta-shine 2.4s infinite;
-}
-@keyframes cta-shine {
-  0%   { left: -75%; }
-  60%  { left: 125%; }
-  100% { left: 125%; }
-}
-.cta-btn--active:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 10px 32px rgba(255,100,0,0.6);
-}
-.cta-btn--active:active {
-  transform: translateY(0) scale(0.98);
-}
-/* ================================ */
+  /* CTA active: orange + shine */
+  .cta-btn--active {
+    background: linear-gradient(135deg,#ff8c00,#ff4500) !important;
+    box-shadow: 0 6px 28px rgba(255,100,0,0.5) !important;
+    cursor: pointer !important;
+    animation: none !important;
+  }
+  .cta-btn--active::before {
+    display: block !important;
+    content: '' !important;
+    position: absolute !important;
+    top: 0; left: -75% !important;
+    width: 50%; height: 100% !important;
+    background: linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent) !important;
+    animation: shine 2.4s infinite !important;
+  }
+  @keyframes shine {
+    0%  { left: -75%; }
+    60% { left: 125%; }
+    100%{ left: 125%; }
+  }
+  .cta-btn-wrap:has(.cta-btn--active) { animation: pulse-ring 2s infinite !important; }
 
 </style>
 </head>
@@ -160,7 +136,9 @@ a.cta-btn--active {
     <div class="cta-btn-wrap">
       <a class="cta-btn cta-btn--active"
          href="https://px.a8.net/svt/ejp?a8mat=4B3U78+9OAMFU+2PEO+BYLJM" target="_blank" rel="nofollow noopener"
-        >🟠 今すぐ詳細を確認する</a>
+        >
+        🔜 今すぐ詳細を確認する
+      </a>
     </div>
     
   </div>
