@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ricesan7.github.io/life-navi/sitemap.xml
