@@ -101,11 +101,31 @@
     letter-spacing: 0.03em;
   }
 
+  /* CTA active: orange + shine */
+  .cta-btn--active {
+    background: linear-gradient(135deg,#ff8c00,#ff4500) !important;
+    box-shadow: 0 6px 28px rgba(255,100,0,0.5) !important;
+    cursor: pointer !important;
+    animation: none !important;
+  }
+  .cta-btn--active::before {
+    display: block !important;
+    content: '' !important;
+    position: absolute !important;
+    top: 0; left: -75% !important;
+    width: 50%; height: 100% !important;
+    background: linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent) !important;
+    animation: shine 2.4s infinite !important;
+  }
+  @keyframes shine {
+    0%  { left: -75%; }
+    60% { left: 125%; }
+    100%{ left: 125%; }
+  }
   .cta-btn-wrap:has(.cta-btn--active) { animation: pulse-ring 2s infinite !important; }
 
 
-  
-
+  /* ===== BACK BUTTON ===== */
   .back-btn-bar {
     width: 100%;
     background: #f0f4ff;
@@ -128,6 +148,8 @@
     transition: background 0.2s, color 0.2s;
   }
   .back-btn:hover { background: #1a56c4; color: #fff; }
+  /* ======================== */
+
 </style>
 </head>
 <body>
