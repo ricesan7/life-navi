@@ -104,6 +104,49 @@
     color: #888;
     letter-spacing: 0.03em;
   }
+
+/* ===== CTA BUTTON OVERRIDE ===== */
+.cta-btn--active,
+a.cta-btn--active {
+  display: inline-block;
+  position: relative;
+  padding: 18px 48px;
+  background: linear-gradient(135deg, #ff8c00 0%, #ff5500 100%);
+  color: #fff !important;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 0 6px 24px rgba(255,100,0,0.45);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cta-btn--active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+  animation: cta-shine 2.4s infinite;
+}
+@keyframes cta-shine {
+  0%   { left: -75%; }
+  60%  { left: 125%; }
+  100% { left: 125%; }
+}
+.cta-btn--active:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 32px rgba(255,100,0,0.6);
+}
+.cta-btn--active:active {
+  transform: translateY(0) scale(0.98);
+}
+/* ================================ */
+
 </style>
 </head>
 <body>
@@ -117,9 +160,7 @@
     <div class="cta-btn-wrap">
       <a class="cta-btn cta-btn--active"
          href="https://px.a8.net/svt/ejp?a8mat=4B3U78+BD0U56+348K+3H18R6" target="_blank" rel="nofollow noopener"
-        >
-        🔜 今すぐ詳細を確認する
-      </a>
+        >🟠 今すぐ詳細を確認する</a>
     </div>
     
   </div>
