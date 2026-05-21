@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>合宿免許で最短取得！費用・日程・選び方ガイド | ライフナビ</title>
+<title>合宿免許受付センター | PR広告</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -89,9 +89,14 @@
   .cta-btn:active { transform: translateY(0); }
 
   /* リンク未設定時（準備中）スタイル */
-  
-  
-  
+  .cta-btn--pending {
+    background: linear-gradient(135deg,#aaa,#888) !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+    cursor: default;
+    animation: none;
+  }
+  .cta-btn--pending::before { display: none; }
+  .cta-btn-wrap:has(.cta-btn--pending) { animation: none; }
 
   .cta-sub {
     margin-top: 12px;
@@ -99,60 +104,6 @@
     color: #888;
     letter-spacing: 0.03em;
   }
-
-  /* CTA active: orange + shine */
-  . {
-    background: linear-gradient(135deg,#ff8c00,#ff4500) !important;
-    box-shadow: 0 6px 28px rgba(255,100,0,0.5) !important;
-    cursor: pointer !important;
-    animation: none !important;
-  }
-  .::before {
-    display: block !important;
-    content: '' !important;
-    position: absolute !important;
-    top: 0; left: -75% !important;
-    width: 50%; height: 100% !important;
-    background: linear-gradient(120deg,transparent,rgba(255,255,255,0.5),transparent) !important;
-    animation: shine 2.4s infinite !important;
-  }
-  @keyframes shine {
-    0%  { left: -75%; }
-    60% { left: 125%; }
-    100%{ left: 125%; }
-  }
-  .cta-btn-wrap:has(.) { animation: pulse-ring 2s infinite !important; }
-
-
-  /* ===== BACK BUTTON ===== */
-  .back-btn-bar {
-    width: 100%;
-    background: #f0f4ff;
-    border-bottom: 1px solid #c8d8f8;
-    padding: 7px 14px;
-    box-sizing: border-box;
-  }
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    color: #1a56c4;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-decoration: none;
-    padding: 5px 14px;
-    border: 1.5px solid #1a56c4;
-    border-radius: 20px;
-    background: #fff;
-    transition: background 0.2s, color 0.2s;
-  }
-  .back-btn:hover { background: #1a56c4; color: #fff; }
-  /* ======================== */
-
-  /* back-bar */
-  .back-bar{width:100%;background:#eef2ff;border-bottom:1px solid #c5d0f5;padding:6px 12px;box-sizing:border-box;display:block;}
-  .back-bar a{color:#1a56c4;font-size:0.8rem;font-weight:700;text-decoration:none;white-space:nowrap;}
-  .back-bar a:hover{text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -164,40 +115,14 @@
   <!-- CTAボタン（HTML実装：shimmer + pulse） -->
   <div class="cta-area">
     <div class="cta-btn-wrap">
-      <a class="cta-btn"
-         href="https://px.a8.net/svt/ejp?a8mat=4B3U78+ASS3KQ+2C9M+699KI" target="_blank" rel="nofollow noopener"
-        >
-        🔜 今すぐ詳細を確認する
+      <a class="cta-btn cta-btn--pending"
+         href="#">
+        🔜 近日公開予定
       </a>
     </div>
     
   </div>
 
-
-  
 </div>
-
-
-<style>
-.back-top-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  background: #fff;
-  color: #1a56c4;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 9px 22px;
-  border: 2px solid #1a56c4;
-  border-radius: 24px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.18);
-  white-space: nowrap;
-}
-</style>
-<a href="https://ricesan7.github.io/life-navi/" class="back-top-btn">&#8592; ライフナビ トップへ戻る</a>
-
 </body>
 </html>
