@@ -18,9 +18,10 @@ jobs:
           server: ${{ secrets.XSERVER_FTP_HOST }}
           username: ${{ secrets.XSERVER_FTP_USER }}
           password: ${{ secrets.XSERVER_FTP_PASS }}
-          server-dir: /xs546083.xsrv.jp/public_html/life-navi/
+          server-dir: /xs546083.xsrv.jp/public_html/
           local-dir: ./
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+            .github/**
