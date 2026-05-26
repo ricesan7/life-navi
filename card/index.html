@@ -138,7 +138,7 @@
   .section-title{font-size:13px;letter-spacing:2px;font-weight:700;color:var(--accent-light);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
   .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
   .card-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:40px;animation:fadeUp .6s ease .2s both}
-  .card-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;transition:all .22s;position:relative;overflow:hidden}
+  .card-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;transition:all .22s;position:relative;overflow:hidden}
   .card-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--accent-light))}
   .card-item.has-invest::before{background:linear-gradient(to bottom,var(--invest),var(--invest-light))}
   .card-item.type-premium::before{background:linear-gradient(to bottom,#e8a020,#f5c050)}
@@ -157,21 +157,22 @@
   .card-desc{font-size:12px;color:var(--text-sub);line-height:1.7}
   .invest-info{margin-top:8px;padding:8px 12px;background:rgba(125,47,212,0.1);border:1px solid rgba(125,47,212,0.25);border-radius:8px;font-size:11px;color:var(--invest-light);line-height:1.6}
   .invest-info strong{color:var(--invest-light)}
-  .card-stats{text-align:right;min-width:120px}
+  .card-stats{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+  .card-stats .stat-row{min-width:80px}
   .stat-row{margin-bottom:6px}
   .stat-label{font-size:10px;color:var(--text-sub)}
   .stat-val{font-size:18px;font-weight:900;color:var(--green-light);line-height:1.1}
   .stat-unit{font-size:11px;color:var(--text-sub)}
   .stat-note{font-size:10px;color:var(--text-sub);margin-top:2px}
-  .card-footer{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
+  .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
   .card-feats{display:flex;gap:6px;flex-wrap:wrap}
   .feat-badge{font-size:10px;padding:3px 8px;border-radius:3px;background:rgba(22,37,56,.8);border:1px solid var(--border);color:var(--text-sub)}
   .feat-badge.invest{border-color:rgba(125,47,212,.4);color:var(--invest-light)}
   .feat-badge.gold{border-color:rgba(232,160,32,.4);color:var(--gold-light)}
   .card-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 18px;background:rgba(45,127,212,0.15);border:1px solid rgba(45,127,212,0.4);border-radius:20px;color:var(--accent-light);text-decoration:none;transition:all .2s}
   .card-cta:hover{background:rgba(45,127,212,.3)}
-  .recommend-ribbon{position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;padding:3px 8px;background:var(--gold);color:#000;border-radius:4px;letter-spacing:1px}
-  .invest-ribbon{position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;padding:3px 8px;background:var(--invest-light);color:#fff;border-radius:4px;letter-spacing:1px}
+  .recommend-ribbon{display:inline-block;font-size:9px;font-weight:800;padding:3px 8px;background:var(--gold);color:#000;border-radius:4px;letter-spacing:1px;margin-left:6px;vertical-align:middle}
+  .invest-ribbon{display:inline-block;font-size:9px;font-weight:800;padding:3px 8px;background:var(--invest-light);color:#fff;border-radius:4px;letter-spacing:1px;margin-left:6px;vertical-align:middle}
 
   /* ポイント投資解説セクション */
   .explain-section{margin-bottom:40px;animation:fadeUp .6s ease .25s both}
@@ -199,7 +200,7 @@
   .note-box strong{color:var(--text)}
   .foot{text-align:center;font-size:11px;color:var(--text-sub);line-height:1.8;padding-top:24px;border-top:1px solid var(--border)}
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  @media(max-width:560px){.card-item{grid-template-columns:1fr}.card-stats{text-align:left}.card-footer{flex-direction:column;align-items:flex-start}}
+  @media(max-width:560px){.card-stats{gap:10px}.card-footer{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -253,6 +254,11 @@
         <div class="ii-card">マネックスカード</div>
         <div class="ii-point">マネックスポイント → マネックス証券</div>
         <div class="ii-broker">クレカ積立1.1%（業界最高水準）。米国株購入にもポイント使用可</div>
+      </div>
+      <div class="invest-item" style="border-color:rgba(125,47,212,0.5);background:rgba(125,47,212,0.08);">
+        <div class="ii-card" style="color:var(--invest-light);">カブアンドカード 🆕</div>
+        <div class="ii-point" style="color:var(--gold-light);">ポイントではなく → 株式として付与</div>
+        <div class="ii-broker">カード利用額の一部がそのまま株式（有価証券）として還元。日常の買い物が直接資産形成につながる新発想カード</div>
       </div>
     </div>
   </div>
@@ -574,6 +580,46 @@
       </div>
     </div>
 
+    <!-- カブアンド -->
+    <div class="card-item has-invest" data-type="invest free">
+      <div class="card-info">
+        <div class="card-top">
+          <span class="card-name">カブアンドカード <span class="invest-ribbon">株主優待×ポイント</span></span>
+          <span class="type-badge badge-invest">ポイント投資対応</span>
+          <span class="type-badge badge-free">年会費無料</span>
+        </div>
+        <div class="card-tags">
+          <span class="card-tag invest-tag">買い物で株がもらえる</span>
+          <span class="card-tag">カブアンド証券連携</span>
+          <span class="card-tag">利用額の一部が株式に</span>
+          <span class="card-tag">未上場株・上場株対応</span>
+        </div>
+        <div class="card-desc">クレジットカードの利用金額の一部が<strong style="color:#a855f7">そのまま株式として付与される</strong>という新発想のカード。ポイントではなく「株（有価証券）」として還元されるため、使えば使うほど株主になれる仕組み。カブアンド証券と連携し、日常の買い物が資産形成に直結する。</div>
+        <div class="invest-info">💹 <strong>ポイント投資詳細：</strong>カード利用額の一部がカブアンド証券の株式として付与（還元率はプランによる）。付与された株は売却・保有が可能。「ポイント」ではなく「株」として還元される点が他社と異なる。AIエンジニアなど高需要スキル保有者向けの特典プランも展開。</div>
+      </div>
+      <div class="card-stats">
+        <div class="stat-row">
+          <div class="stat-label">還元形式</div>
+          <div class="stat-val" style="font-size:14px;color:var(--invest-light)">株式付与</div>
+          <div class="stat-note">ポイントではなく株</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">年会費</div>
+          <div class="stat-val" style="font-size:14px">無料</div>
+          <div class="stat-note">永年無料</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-feats">
+          <span class="feat-badge invest">株式還元</span>
+          <span class="feat-badge invest">カブアンド証券連携</span>
+          <span class="feat-badge">AI時代の新発想</span>
+        </div>
+        <a href="https://kabuand.com/" target="_blank" rel="noopener" class="card-cta">公式サイトへ ›</a>
+      </div>
+    </div>
+
+
   </div>
 
   <!-- ポイント投資の仕組み解説 -->
@@ -664,6 +710,10 @@
     <div class="faq-item">
       <div class="faq-q">Q. クレジットカードで投信積立するとどんなメリットがありますか？</div>
       <div class="faq-a">クレカ積立とは、毎月の投資信託の積立をクレジットカード払いにする仕組みです。SBI証券×三井住友カード（月5万円まで）・楽天証券×楽天カード（月10万円まで）が主流。通常の買い物同様にポイントが付与されるため、積立額の0.5〜1%相当のポイントが毎月貯まります。年間積立60万円なら3,000〜6,000ポイント相当の「ボーナス」が得られます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q. カブアンドカードとは何ですか？ポイントカードと何が違うの？</div>
+      <div class="faq-a">カブアンドカードはクレジットカードの利用金額の一部が「ポイント」ではなく「株式（有価証券）」として付与される新しいタイプのカードです。通常のポイントカードはポイントを貯めて買い物等に使いますが、カブアンドカードは株主になれる点が最大の違いです。付与された株は売却して現金化したり、配当を受け取ったりすることができます（株価変動リスクあり）。日常の買い物を通じて自然に株式投資を体験できる入口として注目されています。</div>
     </div>
   </div>
 
