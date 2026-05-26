@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>格安SIM比較ガイド 2026 | LifeNavi</title>
+<style>
+  :root {
+    --dark: #0a1520;
+    --mid: #111f30;
+    --panel: #162538;
+    --accent: #1a5f8a;
+    --accent-light: #2d9fd4;
+    --gold: #e8a020;
+    --gold-light: #f5c050;
+    --text: #ddeeff;
+    --text-sub: #7a9ab8;
+    --border: rgba(45,159,212,0.2);
+    --card: rgba(22,37,56,0.92);
+    --green: #27ae60;
+    --green-light: #2ecc71;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+    min-height: 100vh;
+  }
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(26,95,138,0.2), transparent);
+  }
+  .bg-grid {
+    position: fixed; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(45,159,212,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,159,212,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .pr-bar {
+    position: relative; z-index: 20;
+    background: rgba(232,160,32,0.12);
+    border-bottom: 1px solid rgba(232,160,32,0.3);
+    text-align: center; padding: 6px;
+    font-size: 11px; color: var(--gold-light); letter-spacing: 1px;
+  }
+  header {
+    position: relative; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    background: rgba(10,21,32,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 900; text-decoration: none; color: var(--text); }
+  .logo-mark {
+    width: 32px; height: 32px; border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 900; color: #fff;
+  }
+  .logo-sub { font-size: 11px; color: var(--text-sub); font-weight: 400; }
+  .back-btn {
+    font-size: 12px; color: var(--text-sub); text-decoration: none;
+    border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .back-btn:hover { color: var(--accent-light); border-color: var(--accent-light); }
+
+  main {
+    position: relative; z-index: 5;
+    max-width: 860px; margin: 0 auto;
+    padding: 36px 20px 80px;
+  }
+
+  /* ヒーロー */
+  .hero { text-align: center; margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 3px; color: var(--accent-light);
+    border: 1px solid rgba(45,159,212,0.4); padding: 5px 16px; border-radius: 20px;
+    margin-bottom: 16px; text-transform: uppercase; font-weight: 700;
+  }
+  .hero h1 { font-size: clamp(22px, 5vw, 36px); font-weight: 900; line-height: 1.4; margin-bottom: 12px; }
+  .hero h1 .hl { color: var(--gold); }
+  .hero-sub { font-size: 14px; color: var(--text-sub); line-height: 1.8; }
+  .hero-sub strong { color: var(--text); }
+
+  /* 節約シミュレーター */
+  .sim-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 28px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .sim-box h2 { font-size: 14px; font-weight: 800; color: var(--accent-light); margin-bottom: 16px; letter-spacing: 1px; }
+  .sim-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .sim-label { font-size: 13px; color: var(--text-sub); min-width: 120px; }
+  .sim-select {
+    background: rgba(10,21,32,0.8); border: 1px solid var(--border);
+    color: var(--text); padding: 8px 12px; border-radius: 8px; font-size: 13px;
+    cursor: pointer; flex: 1; min-width: 140px;
+  }
+  .sim-result {
+    margin-top: 16px; padding: 16px;
+    background: rgba(39,174,96,0.08); border: 1px solid rgba(39,174,96,0.25);
+    border-radius: 10px; display: none;
+  }
+  .sim-result.show { display: block; }
+  .sim-saving { font-size: 24px; font-weight: 900; color: var(--green-light); }
+  .sim-saving span { font-size: 14px; font-weight: 400; color: var(--text-sub); }
+  .sim-note { font-size: 11px; color: var(--text-sub); margin-top: 6px; }
+
+  /* フィルター */
+  .filter-bar {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
+    animation: fadeUp 0.6s ease 0.15s both;
+  }
+  .filter-btn {
+    font-size: 12px; padding: 7px 16px; border-radius: 20px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--text-sub); cursor: pointer; transition: all 0.2s;
+    font-family: inherit;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: rgba(45,159,212,0.15); border-color: var(--accent-light);
+    color: var(--accent-light);
+  }
+
+  /* 表タブ */
+  .section-title {
+    font-size: 13px; letter-spacing: 2px; font-weight: 700;
+    color: var(--accent-light); text-transform: uppercase;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* SIMカード一覧 */
+  .sim-grid {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 40px; animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .sim-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    transition: all 0.22s;
+    position: relative; overflow: hidden;
+  }
+  .sim-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .sim-card.type-mno::before  { background: linear-gradient(to bottom, #1a5f8a, #2d9fd4); }
+  .sim-card.type-mvno::before { background: linear-gradient(to bottom, #27ae60, #2ecc71); }
+  .sim-card.type-sub::before  { background: linear-gradient(to bottom, #e8a020, #f5c050); }
+  .sim-card:hover {
+    border-color: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  }
+
+  .sim-info {}
+  .sim-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .sim-name { font-size: 16px; font-weight: 900; }
+  .sim-type-badge {
+    font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 700;
+  }
+  .badge-mno  { background: rgba(26,95,138,0.3); color: var(--accent-light); border: 1px solid rgba(45,159,212,0.4); }
+  .badge-mvno { background: rgba(39,174,96,0.2); color: var(--green-light); border: 1px solid rgba(39,174,96,0.35); }
+  .badge-sub  { background: rgba(232,160,32,0.15); color: var(--gold-light); border: 1px solid rgba(232,160,32,0.35); }
+  .badge-new  { background: rgba(192,57,43,0.2); color: #e88; border: 1px solid rgba(192,57,43,0.4); font-size: 9px; }
+
+  .sim-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+  .sim-tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 3px;
+    background: rgba(45,159,212,0.1); color: var(--text-sub);
+    border: 1px solid rgba(45,159,212,0.15);
+  }
+  .sim-desc { font-size: 12px; color: var(--text-sub); line-height: 1.7; }
+
+  .sim-price { text-align: right; min-width: 110px; }
+  .price-label { font-size: 10px; color: var(--text-sub); margin-bottom: 3px; }
+  .price-main  { font-size: 22px; font-weight: 900; color: var(--green-light); line-height: 1; }
+  .price-unit  { font-size: 11px; color: var(--text-sub); }
+  .price-plan  { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+  .price-from  { font-size: 10px; color: var(--text-sub); }
+
+  .sim-footer {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 12px; border-top: 1px solid var(--border);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .sim-network { display: flex; gap: 6px; }
+  .net-badge {
+    font-size: 10px; padding: 3px 8px; border-radius: 3px;
+    background: rgba(22,37,56,0.8); border: 1px solid var(--border); color: var(--text-sub);
+  }
+  .net-badge.docomo  { border-color: rgba(180,30,30,0.4); color: #e07; }
+  .net-badge.au      { border-color: rgba(200,100,0,0.4); color: #fa0; }
+  .net-badge.softbank{ border-color: rgba(30,80,180,0.4); color: #7af; }
+  .net-badge.rakuten { border-color: rgba(200,10,10,0.4); color: #f66; }
+
+  .sim-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700; padding: 8px 18px;
+    background: rgba(45,159,212,0.15); border: 1px solid rgba(45,159,212,0.4);
+    border-radius: 20px; color: var(--accent-light); text-decoration: none;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .sim-cta:hover { background: rgba(45,159,212,0.3); }
+
+  /* おすすめバッジ */
+  .recommend-ribbon {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 9px; font-weight: 800; padding: 3px 8px;
+    background: var(--gold); color: #000; border-radius: 4px; letter-spacing: 1px;
+  }
+
+  /* 注意事項 */
+  .note-box {
+    background: rgba(22,37,56,0.7); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 20px; margin-bottom: 32px;
+    font-size: 12px; color: var(--text-sub); line-height: 1.8;
+  }
+  .note-box strong { color: var(--text); }
+
+  /* 選び方ガイド */
+  .guide-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px; margin-bottom: 40px;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+  .guide-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 16px;
+  }
+  .guide-card .gc-icon { font-size: 28px; margin-bottom: 10px; }
+  .guide-card .gc-title { font-size: 14px; font-weight: 800; margin-bottom: 6px; }
+  .guide-card .gc-title span { color: var(--gold); }
+  .guide-card .gc-desc { font-size: 12px; color: var(--text-sub); line-height: 1.7; }
+  .guide-card .gc-rec { font-size: 11px; color: var(--accent-light); margin-top: 8px; font-weight: 700; }
+
+  /* フッター */
+  .foot {
+    text-align: center; font-size: 11px; color: var(--text-sub); line-height: 1.8;
+    padding-top: 24px; border-top: 1px solid var(--border);
+  }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  @media(max-width:560px) {
+    .sim-card { grid-template-columns: 1fr; }
+    .sim-price { text-align: left; }
+    .sim-footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
+
+<header>
+  <a href="/" class="logo">
+    <div class="logo-mark">L</div>
+    <div>
+      <div>LifeNavi</div>
+      <div class="logo-sub">AI時代の生活羅針盤</div>
+    </div>
+  </a>
+  <a href="https://life-navi.news/" class="back-btn">← LifeNavi 診断トップへ</a>
+</header>
+
+<main>
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="hero-eyebrow">📡 通信費削減ガイド 2026</div>
+    <h1>スマホ代、<span class="hl">月3,000〜8,000円</span>削れます</h1>
+    <p class="hero-sub">
+      格安SIMへ乗り換えるだけで、<strong>年間3〜10万円の節約</strong>も可能です。<br>
+      主要サービスを料金・特徴・回線別に比較しました。
+    </p>
+  </div>
+
+  <!-- 節約シミュレーター -->
+  <div class="sim-box">
+    <h2>💰 節約シミュレーター</h2>
+    <div class="sim-row">
+      <span class="sim-label">今の月額料金</span>
+      <select class="sim-select" id="current-fee" onchange="calcSaving()">
+        <option value="">選択してください</option>
+        <option value="9000">約9,000円（大手3キャリア標準）</option>
+        <option value="7000">約7,000円</option>
+        <option value="5000">約5,000円</option>
+        <option value="4000">約4,000円</option>
+        <option value="3000">約3,000円</option>
+      </select>
+    </div>
+    <div class="sim-row">
+      <span class="sim-label">乗り換え先プラン</span>
+      <select class="sim-select" id="target-fee" onchange="calcSaving()">
+        <option value="">選択してください</option>
+        <option value="990">990円（3GB MVNO系）</option>
+        <option value="1078">1,078円（楽天モバイル〜3GB）</option>
+        <option value="1650">1,650円（20GB MVNO系）</option>
+        <option value="2178">2,178円（楽天モバイル〜20GB）</option>
+        <option value="2970">2,970円（ahamo 30GB）</option>
+        <option value="3278">3,278円（楽天モバイル無制限）</option>
+      </select>
+    </div>
+    <div class="sim-result" id="sim-result">
+      <div>月<span class="sim-saving" id="saving-month"></span>の節約</div>
+      <div class="sim-note" id="saving-year"></div>
+    </div>
+  </div>
+
+  <!-- フィルター -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSIM('all', this)">すべて</button>
+    <button class="filter-btn" onclick="filterSIM('mno', this)">MNO（大手系）</button>
+    <button class="filter-btn" onclick="filterSIM('mvno', this)">MVNO（格安）</button>
+    <button class="filter-btn" onclick="filterSIM('sub', this)">サブブランド</button>
+    <button class="filter-btn" onclick="filterSIM('docomo', this)">ドコモ回線</button>
+    <button class="filter-btn" onclick="filterSIM('au', this)">au回線</button>
+    <button class="filter-btn" onclick="filterSIM('softbank', this)">ソフトバンク回線</button>
+  </div>
+
+  <!-- SIM一覧 -->
+  <div class="section-title">主要格安SIM・プラン一覧</div>
+  <div class="sim-grid" id="sim-grid">
+
+    <!-- 楽天モバイル -->
+    <div class="sim-card type-mno" data-type="mno" data-network="rakuten">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">楽天モバイル</span>
+          <span class="sim-type-badge badge-mno">MNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">無制限</span>
+          <span class="sim-tag">データ無制限3,278円</span>
+          <span class="sim-tag">楽天リンク通話無料</span>
+          <span class="sim-tag">段階制料金</span>
+        </div>
+        <div class="sim-desc">使った分だけ払う段階制。〜3GBは1,078円、〜20GBは2,178円、無制限でも3,278円。楽天リンクアプリ経由の通話は無料。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">1,078<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（〜3GB）</div>
+        <div class="price-from">無制限3,278円/月</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge rakuten">楽天回線</span>
+          <span class="net-badge au">auローミング</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+      <div class="recommend-ribbon">人気No.1</div>
+    </div>
+
+    <!-- ahamo -->
+    <div class="sim-card type-sub" data-type="sub" data-network="docomo">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ahamo（アハモ）</span>
+          <span class="sim-type-badge badge-sub">サブブランド</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">30GB</span>
+          <span class="sim-tag">5分通話無料</span>
+          <span class="sim-tag">海外OK</span>
+          <span class="sim-tag">ドコモ品質</span>
+        </div>
+        <div class="sim-desc">ドコモのオンライン専用プラン。30GBで2,970円。5分以内の国内通話無料。82カ国でのローミングも同料金で利用可。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">月額</div>
+        <div class="price-main">2,970<span class="price-unit">円</span></div>
+        <div class="price-plan">/月（30GB）</div>
+        <div class="price-from">+1,100円で無制限</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- LINEMO -->
+    <div class="sim-card type-sub" data-type="sub" data-network="softbank">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">LINEMO（ラインモ）</span>
+          <span class="sim-type-badge badge-sub">サブブランド</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">LINEギガフリー</span>
+          <span class="sim-tag">3GB〜</span>
+          <span class="sim-tag">eSIM対応</span>
+          <span class="sim-tag">ソフトバンク品質</span>
+        </div>
+        <div class="sim-desc">ソフトバンクのオンライン専用プラン。LINEのデータ消費ゼロ。ミニプラン3GBが990円〜、ベストプラン10GB段階制が990〜2,090円。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">990<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（3GB〜）</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge softbank">ソフトバンク回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- povo2.0 -->
+    <div class="sim-card type-mno" data-type="mno" data-network="au">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">povo2.0（ポヴォ）</span>
+          <span class="sim-type-badge badge-mno">MNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">基本料0円</span>
+          <span class="sim-tag">トッピング制</span>
+          <span class="sim-tag">au品質</span>
+          <span class="sim-tag">eSIM対応</span>
+        </div>
+        <div class="sim-desc">基本料金0円でトッピング購入制。1GB/7日390円〜。使わない月は0円キープ可能。サブSIMとして持っておくのに最適。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">基本</div>
+        <div class="price-main">0<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（基本料）</div>
+        <div class="price-from">トッピング別途</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge au">au回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- mineo -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo au softbank">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">mineo（マイネオ）</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">3回線対応</span>
+          <span class="sim-tag">パケット融通</span>
+          <span class="sim-tag">低速無制限あり</span>
+          <span class="sim-tag">繰り越し可</span>
+        </div>
+        <div class="sim-desc">ドコモ・au・ソフトバンクの3回線から選べるMVNO。低速（最大1.5Mbps）使い放題990円が人気。ユーザー同士でパケットを融通できるコミュニティ機能あり。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">990<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（無制限低速）</div>
+        <div class="price-from">3GB 1,298円〜</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ</span>
+          <span class="net-badge au">au</span>
+          <span class="net-badge softbank">SoftBank</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- IIJmio -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo au">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">IIJmio（みおふぉん）</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">低価格</span>
+          <span class="sim-tag">eSIM440円〜</span>
+          <span class="sim-tag">2GB〜</span>
+          <span class="sim-tag">家族シェア可</span>
+        </div>
+        <div class="sim-desc">業歴の長い信頼性の高いMVNO。データeSIMは2GBで440円〜と業界最安水準。キャンペーン時は事務手数料が割引になることも。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">440<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（2GB eSIM）</div>
+        <div class="price-from">音声2GB 850円〜</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ</span>
+          <span class="net-badge au">au</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- NUROモバイル -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo au softbank">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">NUROモバイル</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">3回線対応</span>
+          <span class="sim-tag">NEOプラン</span>
+          <span class="sim-tag">速度特化</span>
+          <span class="sim-tag">キャッシュバックあり</span>
+        </div>
+        <div class="sim-desc">ソニーネットワークコミュニケーションズ運営。VMプランは5GBで990円。速度重視のNEOプランも展開。繰り越し可能でコスパ重視層に人気。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">990<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（5GB）</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ</span>
+          <span class="net-badge au">au</span>
+          <span class="net-badge softbank">SoftBank</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- 日本通信SIM -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">日本通信SIM</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">通話特化</span>
+          <span class="sim-tag">70分通話無料</span>
+          <span class="sim-tag">合理的プラン</span>
+          <span class="sim-tag">田舎でも安定</span>
+        </div>
+        <div class="sim-desc">通話が多い人向け。合理的みんなのプランは70分無料通話付き1GB 290円〜。ドコモ回線使用で地方・山間部でも安定した接続が評判。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">290<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（1GB）</div>
+        <div class="price-from">50GB 2,178円〜</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- HISモバイル -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">HISモバイル</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">段階制</span>
+          <span class="sim-tag">激安プランあり</span>
+          <span class="sim-tag">30GB以下に最適</span>
+        </div>
+        <div class="sim-desc">「ビタッ！プラン」は使った分だけ支払う段階制。月100MB未満なら198円〜。旅行会社HIS運営で海外SIMとの組み合わせも便利。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">198<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（段階制）</div>
+        <div class="price-from">30GB 5,775円上限</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- イオンモバイル -->
+    <div class="sim-card type-mvno" data-type="mvno" data-network="docomo au">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">イオンモバイル</span>
+          <span class="sim-type-badge badge-mvno">MVNO</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">店舗サポートあり</span>
+          <span class="sim-tag">シニア向け</span>
+          <span class="sim-tag">家族シェア</span>
+          <span class="sim-tag">イオンゴールド特典</span>
+        </div>
+        <div class="sim-desc">イオン店舗での対面サポートが強み。スマホが不慣れなシニア層にも人気。家族でシェアできるプランも充実。イオンゴールドカード保有者は月額割引あり。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">858<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（1GB）</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge docomo">ドコモ</span>
+          <span class="net-badge au">au</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- UQ mobile -->
+    <div class="sim-card type-sub" data-type="sub" data-network="au">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">UQ mobile</span>
+          <span class="sim-type-badge badge-sub">サブブランド</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">au系高品質</span>
+          <span class="sim-tag">節約モード</span>
+          <span class="sim-tag">店舗サポートあり</span>
+        </div>
+        <div class="sim-desc">au系列のサブブランド。通信品質はMVNO以上で安定。「節約モード」で低速ながら通信量を消費せず使えるのが特徴。実店舗でのサポートも可能。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">1,078<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（4GB〜）</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge au">au回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+    <!-- ワイモバイル -->
+    <div class="sim-card type-sub" data-type="sub" data-network="softbank">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ワイモバイル</span>
+          <span class="sim-type-badge badge-sub">サブブランド</span>
+        </div>
+        <div class="sim-tags">
+          <span class="sim-tag">ソフトバンク系</span>
+          <span class="sim-tag">家族割あり</span>
+          <span class="sim-tag">店舗多数</span>
+          <span class="sim-tag">PayPay連携</span>
+        </div>
+        <div class="sim-desc">ソフトバンク系のサブブランド。家族割・おうち割が充実。PayPayとの相性が良く、街中での接続も安定。通話品質を重視する人向け。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最安</div>
+        <div class="price-main">2,178<span class="price-unit">円〜</span></div>
+        <div class="price-plan">/月（4GB〜）</div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network">
+          <span class="net-badge softbank">ソフトバンク回線</span>
+        </div>
+        <a href="#" class="sim-cta">詳細を見る ›</a>
+      </div>
+    </div>
+
+  </div><!-- /sim-grid -->
+
+  <!-- 選び方ガイド -->
+  <div class="section-title">あなたに合ったプランの選び方</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="gc-icon">💡</div>
+      <div class="gc-title"><span>とにかく安く</span>したい</div>
+      <div class="gc-desc">月3GB以下しか使わないなら、MVNOの990円〜1,300円プランで十分。通話が多い場合は日本通信SIMの通話無料付きプランがコスパ最高。</div>
+      <div class="gc-rec">おすすめ → mineo / 日本通信SIM / IIJmio</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">📶</div>
+      <div class="gc-title"><span>速度・品質</span>も確保したい</div>
+      <div class="gc-desc">昼間の通信速度低下が気になるならサブブランドが安心。ahamo・LINEMO・UQ mobileはMNO品質を格安で使える。</div>
+      <div class="gc-rec">おすすめ → ahamo / LINEMO / UQ mobile</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">♾️</div>
+      <div class="gc-title">データを<span>たくさん使う</span></div>
+      <div class="gc-desc">20GB以上使うなら楽天モバイルが最強コスパ。無制限でも3,278円。エリアや屋内通信に不安がある場合はahamoも選択肢。</div>
+      <div class="gc-rec">おすすめ → 楽天モバイル / ahamo大盛り</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">🏪</div>
+      <div class="gc-title"><span>店舗サポート</span>が必要</div>
+      <div class="gc-desc">スマホ操作が不安・対面で相談したい場合は、イオンモバイルやワイモバイルなど実店舗対応のサービスが安心。</div>
+      <div class="gc-rec">おすすめ → イオンモバイル / UQ mobile / ワイモバイル</div>
+    </div>
+  </div>
+
+
+  <!-- LifeNaviへの誘導バナー -->
+  <div style="
+    background: linear-gradient(135deg, rgba(26,95,138,0.3), rgba(45,159,212,0.15));
+    border: 1px solid rgba(45,159,212,0.4);
+    border-radius: 16px; padding: 24px 28px;
+    text-align: center; margin-bottom: 32px;
+    animation: fadeUp 0.6s ease 0.4s both;
+  ">
+    <div style="font-size:11px;letter-spacing:2px;color:var(--accent-light);font-weight:700;margin-bottom:10px;text-transform:uppercase;">AI時代の生活羅針盤</div>
+    <div style="font-size:20px;font-weight:900;margin-bottom:8px;">通信費を削った次は、<span style="color:var(--gold);">何に備える？</span></div>
+    <div style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:18px;">
+      キャリア・お金・将来リスクをまとめて診断。<br>
+      あなたに合った「物価上昇対策ロードマップ」を無料で確認できます。
+    </div>
+    <a href="https://life-navi.news/" style="
+      display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-light));
+      color:#fff;font-size:14px;font-weight:800;
+      padding:13px 32px;border-radius:30px;text-decoration:none;
+      box-shadow:0 4px 20px rgba(45,159,212,0.35);
+      transition:all 0.2s;
+    " onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(45,159,212,0.5)'"
+       onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(45,159,212,0.35)'"
+    >🧭 LifeNavi で総合診断を受ける →</a>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="note-box">
+    <strong>【ご注意】</strong>掲載料金は2026年5月時点の情報です。各サービスの最新料金・プランは公式サイトでご確認ください。乗り換え（MNP）にはSIMロック解除が必要な場合があります。通信速度はエリア・時間帯により異なります。<br>
+    本ページにはアフィリエイト広告（PR）が含まれます。
+  </div>
+
+  <div class="foot">
+    © 2026 LifeNavi — AI時代の生活羅針盤 ｜ 本ページはアフィリエイト広告を含みます
+  </div>
+</main>
+
+<script>
+function calcSaving() {
+  const cur = parseInt(document.getElementById('current-fee').value) || 0;
+  const tgt = parseInt(document.getElementById('target-fee').value) || 0;
+  const res = document.getElementById('sim-result');
+  if (!cur || !tgt) { res.classList.remove('show'); return; }
+  const monthly = cur - tgt;
+  const yearly  = monthly * 12;
+  if (monthly <= 0) { res.classList.remove('show'); return; }
+  document.getElementById('saving-month').innerHTML = monthly.toLocaleString() + '<span>円</span>';
+  document.getElementById('saving-year').textContent = `年間 ${yearly.toLocaleString()}円（${(yearly/10000).toFixed(1)}万円）の節約になります`;
+  res.classList.add('show');
+}
+
+function filterSIM(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sim-card').forEach(card => {
+    if (type === 'all') {
+      card.style.display = '';
+    } else if (['mno','mvno','sub'].includes(type)) {
+      card.style.display = card.dataset.type === type ? '' : 'none';
+    } else {
+      card.style.display = (card.dataset.network || '').includes(type) ? '' : 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
