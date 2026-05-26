@@ -128,6 +128,14 @@ main{position:relative;z-index:5;max-width:900px;margin:0 auto;padding:36px 20px
 footer{text-align:center;font-size:11px;color:var(--ts);line-height:1.8;padding-top:24px;border-top:1px solid var(--bd)}
 @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.item{flex-direction:column}.item-right{align-items:flex-start;flex-direction:row;flex-wrap:wrap}}
+
+<style>
+.related-nav{max-width:900px;margin:0 auto 40px;padding:0 20px;position:relative;z-index:5}
+.related-nav-title{font-size:12px;letter-spacing:2px;font-weight:700;color:#7a9ab8;margin-bottom:12px;text-transform:uppercase}
+.related-links{display:flex;gap:10px;flex-wrap:wrap}
+.related-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 16px;background:rgba(22,37,56,.8);border:1px solid rgba(45,127,212,.25);border-radius:20px;color:#5ba3e8;text-decoration:none;transition:all .2s}
+.related-link:hover{background:rgba(45,127,212,.15);border-color:rgba(45,127,212,.5);transform:translateY(-1px)}
+</style>
 </style>
 </head>
 <body>
@@ -302,7 +310,15 @@ footer{text-align:center;font-size:11px;color:var(--ts);line-height:1.8;padding-
     <a href="https://life-navi.news/" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--ac),var(--al));color:#fff;font-size:14px;font-weight:800;padding:13px 32px;border-radius:30px;text-decoration:none;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🧭 LifeNavi で総合診断を受ける →</a>
   </div>
   <div class="notebox"><strong>【ご注意】</strong>掲載情報は2026年5月時点のものです。投資はリスクを伴い元本保証はありません。手数料・還元率は変更になる場合があります。最新情報は公式サイトでご確認ください。本ページはアフィリエイト広告を含みます。</div>
-  <footer>© 2026 LifeNavi — AI時代の生活羅針盤 ｜ 本ページはアフィリエイト広告を含みます</footer>
+  <footer>© 2026 LifeNavi — AI時代の生活羅針盤 ｜ 本ページはアフィリエイト広告を含みます
+<div class="related-nav">
+  <div class="related-nav-title">📂 関連ページ</div>
+  <div class="related-links">
+    <a href="https://life-navi.news/" class="related-link">🧭 診断トップへ</a>
+    <a href="https://life-navi.news/card/" class="related-link">💳 クレカ比較</a><a href="https://life-navi.news/toshi/" class="related-link">💹 投資サービス比較</a><a href="https://life-navi.news/school/" class="related-link">🎓 資格・スクール比較</a>
+  </div>
+</div>
+</footer>
 </main>
 <script>
 function fc(t,b){document.querySelectorAll('.fb').forEach(x=>x.classList.remove('on'));b.classList.add('on');document.querySelectorAll('.item').forEach(i=>{i.style.display=(t==='all'||i.dataset.type===t)?'':'none';});}
