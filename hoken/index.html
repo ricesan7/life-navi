@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保険見直し比較ガイド 2026 | LifeNavi</title>
+<style>
+  :root {
+    --dark: #0a1520;
+    --mid: #111f30;
+    --panel: #162538;
+    --accent: #1a6b4a;
+    --accent-light: #27ae60;
+    --gold: #e8a020;
+    --gold-light: #f5c050;
+    --text: #ddeeff;
+    --text-sub: #7a9ab8;
+    --border: rgba(39,174,96,0.2);
+    --card: rgba(22,37,56,0.92);
+    --green: #27ae60;
+    --green-light: #2ecc71;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif; min-height:100vh; }
+  .bg-layer { position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(39,174,96,0.2),transparent); }
+  .bg-grid { position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(39,174,96,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(39,174,96,0.04) 1px,transparent 1px);background-size:48px 48px; }
+  .pr-bar { position:relative;z-index:20;background:rgba(232,160,32,0.12);border-bottom:1px solid rgba(232,160,32,0.3);text-align:center;padding:6px;font-size:11px;color:var(--gold-light);letter-spacing:1px; }
+  header { position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(10,21,32,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border); }
+  .logo { display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900;text-decoration:none;color:var(--text); }
+  .logo-mark { width:32px;height:32px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff; }
+  .logo-sub { font-size:11px;color:var(--text-sub);font-weight:400; }
+  .back-btn { font-size:12px;color:var(--text-sub);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:20px;transition:all 0.2s; }
+  .back-btn:hover { color:var(--accent-light);border-color:var(--accent-light); }
+  main { position:relative;z-index:5;max-width:860px;margin:0 auto;padding:36px 20px 80px; }
+  .hero { text-align:center;margin-bottom:40px;animation:fadeUp 0.6s ease both; }
+  .hero-eyebrow { display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;color:var(--accent-light);border:1px solid rgba(39,174,96,0.4);padding:5px 16px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;font-weight:700; }
+  .hero h1 { font-size:clamp(22px,5vw,36px);font-weight:900;line-height:1.4;margin-bottom:12px; }
+  .hero h1 .hl { color:var(--gold); }
+  .hero-sub { font-size:14px;color:var(--text-sub);line-height:1.8; }
+  .hero-sub strong { color:var(--text); }
+  .filter-bar { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;animation:fadeUp 0.6s ease 0.15s both; }
+  .filter-btn { font-size:12px;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-sub);cursor:pointer;transition:all 0.2s;font-family:inherit; }
+  .filter-btn.active,.filter-btn:hover { background:rgba(39,174,96,0.15);border-color:var(--accent-light);color:var(--accent-light); }
+  .section-title { font-size:13px;letter-spacing:2px;font-weight:700;color:var(--accent-light);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px; }
+  .section-title::after { content:'';flex:1;height:1px;background:var(--border); }
+  .sim-grid { display:flex;flex-direction:column;gap:10px;margin-bottom:40px;animation:fadeUp 0.6s ease 0.2s both; }
+  .sim-card { background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;transition:all 0.22s;position:relative;overflow:hidden; }
+  .sim-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px; }
+  .sim-card.type-free::before { background:linear-gradient(to bottom,var(--accent),var(--accent-light)); }
+  .sim-card.type-paid::before { background:linear-gradient(to bottom,#27ae60,#2ecc71); }
+  .sim-card.type-app::before  { background:linear-gradient(to bottom,#e8a020,#f5c050); }
+  .sim-card.type-agent::before { background:linear-gradient(to bottom,var(--accent),var(--accent-light)); }
+  .sim-card.type-self::before  { background:linear-gradient(to bottom,#27ae60,#2ecc71); }
+  .sim-card.type-niche::before { background:linear-gradient(to bottom,#e8a020,#f5c050); }
+  .sim-card:hover { border-color:var(--accent-light);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.4); }
+  .sim-info {}
+  .sim-top { display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap; }
+  .sim-name { font-size:16px;font-weight:900; }
+  .sim-type-badge { font-size:10px;padding:3px 8px;border-radius:4px;font-weight:700; }
+  .badge-free  { background:rgba(39,174,96,0.3);color:var(--accent-light);border:1px solid rgba(39,174,96,0.4); }
+  .badge-paid  { background:rgba(39,174,96,0.2);color:var(--green-light);border:1px solid rgba(39,174,96,0.35); }
+  .badge-app   { background:rgba(232,160,32,0.15);color:var(--gold-light);border:1px solid rgba(232,160,32,0.35); }
+  .badge-agent { background:rgba(39,174,96,0.3);color:var(--accent-light);border:1px solid rgba(39,174,96,0.4); }
+  .badge-self  { background:rgba(39,174,96,0.2);color:var(--green-light);border:1px solid rgba(39,174,96,0.35); }
+  .badge-niche { background:rgba(232,160,32,0.15);color:var(--gold-light);border:1px solid rgba(232,160,32,0.35); }
+  .sim-tags { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px; }
+  .sim-tag { font-size:10px;padding:2px 8px;border-radius:3px;background:rgba(39,174,96,0.1);color:var(--text-sub);border:1px solid rgba(39,174,96,0.15); }
+  .sim-desc { font-size:12px;color:var(--text-sub);line-height:1.7; }
+  .sim-price { text-align:right;min-width:110px; }
+  .price-label { font-size:10px;color:var(--text-sub);margin-bottom:3px; }
+  .price-main  { font-size:22px;font-weight:900;color:var(--green-light);line-height:1; }
+  .price-unit  { font-size:11px;color:var(--text-sub); }
+  .price-plan  { font-size:11px;color:var(--text-sub);margin-top:4px; }
+  .price-from  { font-size:10px;color:var(--text-sub); }
+  .sim-footer { grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px; }
+  .sim-network { display:flex;gap:6px;flex-wrap:wrap; }
+  .net-badge { font-size:10px;padding:3px 8px;border-radius:3px;background:rgba(22,37,56,0.8);border:1px solid var(--border);color:var(--text-sub); }
+  .net-badge.life  { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.cancer{ border-color:rgba(200,80,80,0.4);color:#f88; }
+  .net-badge.medical{ border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.fire  { border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.mama  { border-color:rgba(220,100,180,0.4);color:#f8d; }
+  .net-badge.stock { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.fund  { border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.fx    { border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.robo  { border-color:rgba(160,100,220,0.4);color:#c8f; }
+  .net-badge.it    { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.career{ border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.newgrad{ border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.const { border-color:rgba(200,120,50,0.4);color:#fa8; }
+  .net-badge.exec  { border-color:rgba(160,100,220,0.4);color:#c8f; }
+  .sim-cta { display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 18px;background:rgba(39,174,96,0.15);border:1px solid rgba(39,174,96,0.4);border-radius:20px;color:var(--accent-light);text-decoration:none;transition:all 0.2s; }
+  .sim-cta:hover { background:rgba(39,174,96,0.3); }
+  .recommend-ribbon { position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;padding:3px 8px;background:var(--gold);color:#000;border-radius:4px;letter-spacing:1px; }
+  .guide-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:40px;animation:fadeUp 0.6s ease 0.3s both; }
+  .guide-card { background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px; }
+  .guide-card .gc-icon { font-size:28px;margin-bottom:10px; }
+  .guide-card .gc-title { font-size:14px;font-weight:800;margin-bottom:6px; }
+  .guide-card .gc-title span { color:var(--gold); }
+  .guide-card .gc-desc { font-size:12px;color:var(--text-sub);line-height:1.7; }
+  .guide-card .gc-rec { font-size:11px;color:var(--accent-light);margin-top:8px;font-weight:700; }
+  .note-box { background:rgba(22,37,56,0.7);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:32px;font-size:12px;color:var(--text-sub);line-height:1.8; }
+  .note-box strong { color:var(--text); }
+  .foot { text-align:center;font-size:11px;color:var(--text-sub);line-height:1.8;padding-top:24px;border-top:1px solid var(--border); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @media(max-width:560px) { .sim-card{grid-template-columns:1fr}.sim-price{text-align:left}.sim-footer{flex-direction:column;align-items:flex-start} }
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
+<header>
+  <a href="https://life-navi.news/" class="logo">
+    <div class="logo-mark">L</div>
+    <div><div>LifeNavi</div><div class="logo-sub">AI時代の生活羅針盤</div></div>
+  </a>
+  <a href="https://life-navi.news/" class="back-btn">← LifeNavi 診断トップへ</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="hero-eyebrow">🛡️ 保険見直しガイド 2026</div>
+    <h1>保険、<span class="hl">払いすぎていませんか？</span></h1>
+    <p class="hero-sub">見直しだけで<strong>月1〜3万円</strong>が浮くケースも。無料相談サービスを活用すれば、自分に最適なプランをプロが設計してくれます。</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSIM('all',this)">すべて</button>
+    <button class="filter-btn" onclick="filterSIM('free', this)">無料相談</button>
+    <button class="filter-btn" onclick="filterSIM('paid', this)">有料・プレミアム</button>
+    <button class="filter-btn" onclick="filterSIM('mama', this)">ママ・子育て向け</button>
+    <button class="filter-btn" onclick="filterSIM('cancer', this)">がん保険特化</button>
+    
+  </div>
+  <div class="section-title">主要保険無料相談・比較サービス一覧</div>
+  <div class="sim-grid" id="sim-grid">
+    
+    <div class="sim-card type-free" data-type="free" data-cat="mama">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ベビープラネット（ママ向け）</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">ママ特化</span><span class="sim-tag">妊娠〜子育て</span><span class="sim-tag">家族保険</span><span class="sim-tag">無料</span></div>
+        <div class="sim-desc">妊娠中〜子育て中のママのための無料保険相談。ファイナンシャルプランナーが家族全体のリスクをカバーするプランを提案。オンライン対応可。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge mama">ママ向け</span><span class="net-badge life">生命保険</span></div>
+        <a href="https://babyplanet.jp/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      <div class="recommend-ribbon">ママに人気</div>
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="cancer">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ベビープラネット（がん保険）</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">がん保険専門</span><span class="sim-tag">専門FP</span><span class="sim-tag">比較提案</span><span class="sim-tag">無料</span></div>
+        <div class="sim-desc">がん保険に特化した専門相談サービス。多数のプランを比較し、最適な保障を提案。告知義務や特約の違いまで丁寧に解説してくれる。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge cancer">がん保険</span><span class="net-badge medical">医療保険</span></div>
+        <a href="https://babyplanet.jp/cancer/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ファイナンシャルプランナー無料相談</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">FP資格保有</span><span class="sim-tag">保険+資産形成</span><span class="sim-tag">ライフプラン</span><span class="sim-tag">オンライン可</span></div>
+        <div class="sim-desc">保険だけでなく老後・教育資金・資産形成までトータルで相談できる。独立系FPが中立な立場でプランを設計。相談後の契約義務なし。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge life">生命保険</span><span class="net-badge fire">損害保険</span></div>
+        <a href="https://life-navi.news/fp-soudan/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      <div class="recommend-ribbon">おすすめ</div>
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">保険の窓口</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">店舗相談</span><span class="sim-tag">全国展開</span><span class="sim-tag">複数社比較</span><span class="sim-tag">対面OK</span></div>
+        <div class="sim-desc">全国2,000店舗以上の保険相談専門ショップ。複数の保険会社のプランを一度に比較できる。対面相談が安心な人向け。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge life">生命保険</span><span class="net-badge medical">医療保険</span><span class="net-badge cancer">がん保険</span></div>
+        <a href="https://www.hokennoinfo.jp/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">保険見直し本舗</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">オンライン相談</span><span class="sim-tag">乗り換え特化</span><span class="sim-tag">見直し実績豊富</span></div>
+        <div class="sim-desc">現在の保険を持ち込んで見直しを依頼できる専門サービス。払いすぎを発見し、同等保障でより安いプランへ乗り換えをサポート。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge life">生命保険</span><span class="net-badge fire">火災・損害</span></div>
+        <a href="https://www.hokenminaoshi.com/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">マネーキャリア</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">オンライン完結</span><span class="sim-tag">FP相談</span><span class="sim-tag">家計改善</span><span class="sim-tag">スマホOK</span></div>
+        <div class="sim-desc">スマホで完結するオンライン保険・FP相談サービス。保険だけでなく住宅ローンや教育費など家計全体の相談が可能。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge life">生命保険</span><span class="net-badge medical">医療保険</span></div>
+        <a href="https://money-career.jp/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+  </div>
+  <div class="section-title">選び方ガイド</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="gc-icon">👶</div>
+      <div class="gc-title"><span>子育て中・妊娠中</span>のママ</div>
+      <div class="gc-desc">家族構成が変わるタイミングが保険見直しの最大チャンス。ベビープラネットのようなママ特化サービスで、産後の家計を守るプランを設計。</div>
+      <div class="gc-rec">おすすめ → ベビープラネット / マネーキャリア</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">🎗️</div>
+      <div class="gc-title"><span>がん・重病</span>が心配な方</div>
+      <div class="gc-desc">がん保険は商品差が大きく、比較が重要。専門相談で告知義務・特約の違いまで確認し、本当に必要な保障だけを選ぶ。</div>
+      <div class="gc-rec">おすすめ → ベビープラネット（がん）/ 保険の窓口</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">💡</div>
+      <div class="gc-title"><span>今の保険が高い</span>と感じる方</div>
+      <div class="gc-desc">同等の保障でも会社によって月3,000〜10,000円の差が出ることがある。見直し本舗などで現在のプランを持ち込んで比較を。</div>
+      <div class="gc-rec">おすすめ → 保険見直し本舗 / 保険の窓口</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">📱</div>
+      <div class="gc-title"><span>オンラインで</span>完結させたい</div>
+      <div class="gc-desc">店舗に行く時間がない方にはオンライン相談が便利。マネーキャリアやベビープラネットはスマホから予約〜相談まで完結。</div>
+      <div class="gc-rec">おすすめ → マネーキャリア / ベビープラネット</div>
+    </div></div>
+  <div style="background:linear-gradient(135deg,rgba(39,174,96,0.3),rgba(39,174,96,0.1));border:1px solid rgba(39,174,96,0.4);border-radius:16px;padding:24px 28px;text-align:center;margin-bottom:32px;">
+    <div style="font-size:11px;letter-spacing:2px;color:var(--accent-light);font-weight:700;margin-bottom:10px;text-transform:uppercase;">AI時代の生活羅針盤</div>
+    <div style="font-size:20px;font-weight:900;margin-bottom:8px;">保険の次は、<span style="color:var(--gold);">お金全体を設計する</span></div>
+    <div style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:18px;">節約した保険料をどう運用するか。投資・転職・将来設計をトータルで診断できます。</div>
+    <a href="https://life-navi.news/" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;font-size:14px;font-weight:800;padding:13px 32px;border-radius:30px;text-decoration:none;box-shadow:0 4px 20px rgba(39,174,96,0.35);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🧭 LifeNavi で総合診断を受ける →</a>
+  </div>
+  <div class="note-box"><strong>【ご注意】</strong>掲載情報は2026年5月時点のものです。各サービスの最新情報・プランは公式サイトでご確認ください。保険の加入・変更は内容を十分理解した上でご判断ください。本ページはアフィリエイト広告を含みます。</div>
+  <div class="foot">© 2026 LifeNavi — AI時代の生活羅針盤 ｜ 本ページはアフィリエイト広告を含みます</div>
+</main>
+<script>
+function filterSIM(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sim-card').forEach(card => {
+    if (type === 'all') { card.style.display = ''; }
+    else { card.style.display = (card.dataset.type === type || card.dataset.cat.includes(type)) ? '' : 'none'; }
+  });
+}
+</script>
+</body>
+</html>

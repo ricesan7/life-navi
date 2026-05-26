@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投資・資産形成サービス比較ガイド 2026 | LifeNavi</title>
+<style>
+  :root {
+    --dark: #0a1520;
+    --mid: #111f30;
+    --panel: #162538;
+    --accent: #1a4a8a;
+    --accent-light: #2d7fd4;
+    --gold: #e8a020;
+    --gold-light: #f5c050;
+    --text: #ddeeff;
+    --text-sub: #7a9ab8;
+    --border: rgba(45,127,212,0.2);
+    --card: rgba(22,37,56,0.92);
+    --green: #27ae60;
+    --green-light: #2ecc71;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif; min-height:100vh; }
+  .bg-layer { position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(45,127,212,0.2),transparent); }
+  .bg-grid { position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(45,127,212,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(45,127,212,0.04) 1px,transparent 1px);background-size:48px 48px; }
+  .pr-bar { position:relative;z-index:20;background:rgba(232,160,32,0.12);border-bottom:1px solid rgba(232,160,32,0.3);text-align:center;padding:6px;font-size:11px;color:var(--gold-light);letter-spacing:1px; }
+  header { position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(10,21,32,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border); }
+  .logo { display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900;text-decoration:none;color:var(--text); }
+  .logo-mark { width:32px;height:32px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff; }
+  .logo-sub { font-size:11px;color:var(--text-sub);font-weight:400; }
+  .back-btn { font-size:12px;color:var(--text-sub);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:20px;transition:all 0.2s; }
+  .back-btn:hover { color:var(--accent-light);border-color:var(--accent-light); }
+  main { position:relative;z-index:5;max-width:860px;margin:0 auto;padding:36px 20px 80px; }
+  .hero { text-align:center;margin-bottom:40px;animation:fadeUp 0.6s ease both; }
+  .hero-eyebrow { display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;color:var(--accent-light);border:1px solid rgba(45,127,212,0.4);padding:5px 16px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;font-weight:700; }
+  .hero h1 { font-size:clamp(22px,5vw,36px);font-weight:900;line-height:1.4;margin-bottom:12px; }
+  .hero h1 .hl { color:var(--gold); }
+  .hero-sub { font-size:14px;color:var(--text-sub);line-height:1.8; }
+  .hero-sub strong { color:var(--text); }
+  .filter-bar { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;animation:fadeUp 0.6s ease 0.15s both; }
+  .filter-btn { font-size:12px;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-sub);cursor:pointer;transition:all 0.2s;font-family:inherit; }
+  .filter-btn.active,.filter-btn:hover { background:rgba(45,127,212,0.15);border-color:var(--accent-light);color:var(--accent-light); }
+  .section-title { font-size:13px;letter-spacing:2px;font-weight:700;color:var(--accent-light);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px; }
+  .section-title::after { content:'';flex:1;height:1px;background:var(--border); }
+  .sim-grid { display:flex;flex-direction:column;gap:10px;margin-bottom:40px;animation:fadeUp 0.6s ease 0.2s both; }
+  .sim-card { background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;transition:all 0.22s;position:relative;overflow:hidden; }
+  .sim-card::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px; }
+  .sim-card.type-free::before { background:linear-gradient(to bottom,var(--accent),var(--accent-light)); }
+  .sim-card.type-paid::before { background:linear-gradient(to bottom,#27ae60,#2ecc71); }
+  .sim-card.type-app::before  { background:linear-gradient(to bottom,#e8a020,#f5c050); }
+  .sim-card.type-agent::before { background:linear-gradient(to bottom,var(--accent),var(--accent-light)); }
+  .sim-card.type-self::before  { background:linear-gradient(to bottom,#27ae60,#2ecc71); }
+  .sim-card.type-niche::before { background:linear-gradient(to bottom,#e8a020,#f5c050); }
+  .sim-card:hover { border-color:var(--accent-light);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.4); }
+  .sim-info {}
+  .sim-top { display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap; }
+  .sim-name { font-size:16px;font-weight:900; }
+  .sim-type-badge { font-size:10px;padding:3px 8px;border-radius:4px;font-weight:700; }
+  .badge-free  { background:rgba(45,127,212,0.3);color:var(--accent-light);border:1px solid rgba(45,127,212,0.4); }
+  .badge-paid  { background:rgba(39,174,96,0.2);color:var(--green-light);border:1px solid rgba(39,174,96,0.35); }
+  .badge-app   { background:rgba(232,160,32,0.15);color:var(--gold-light);border:1px solid rgba(232,160,32,0.35); }
+  .badge-agent { background:rgba(45,127,212,0.3);color:var(--accent-light);border:1px solid rgba(45,127,212,0.4); }
+  .badge-self  { background:rgba(39,174,96,0.2);color:var(--green-light);border:1px solid rgba(39,174,96,0.35); }
+  .badge-niche { background:rgba(232,160,32,0.15);color:var(--gold-light);border:1px solid rgba(232,160,32,0.35); }
+  .sim-tags { display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px; }
+  .sim-tag { font-size:10px;padding:2px 8px;border-radius:3px;background:rgba(45,127,212,0.1);color:var(--text-sub);border:1px solid rgba(45,127,212,0.15); }
+  .sim-desc { font-size:12px;color:var(--text-sub);line-height:1.7; }
+  .sim-price { text-align:right;min-width:110px; }
+  .price-label { font-size:10px;color:var(--text-sub);margin-bottom:3px; }
+  .price-main  { font-size:22px;font-weight:900;color:var(--green-light);line-height:1; }
+  .price-unit  { font-size:11px;color:var(--text-sub); }
+  .price-plan  { font-size:11px;color:var(--text-sub);margin-top:4px; }
+  .price-from  { font-size:10px;color:var(--text-sub); }
+  .sim-footer { grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px; }
+  .sim-network { display:flex;gap:6px;flex-wrap:wrap; }
+  .net-badge { font-size:10px;padding:3px 8px;border-radius:3px;background:rgba(22,37,56,0.8);border:1px solid var(--border);color:var(--text-sub); }
+  .net-badge.life  { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.cancer{ border-color:rgba(200,80,80,0.4);color:#f88; }
+  .net-badge.medical{ border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.fire  { border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.mama  { border-color:rgba(220,100,180,0.4);color:#f8d; }
+  .net-badge.stock { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.fund  { border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.fx    { border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.robo  { border-color:rgba(160,100,220,0.4);color:#c8f; }
+  .net-badge.it    { border-color:rgba(45,159,212,0.4);color:#7af; }
+  .net-badge.career{ border-color:rgba(80,180,100,0.4);color:#8e8; }
+  .net-badge.newgrad{ border-color:rgba(232,160,32,0.4);color:#fa0; }
+  .net-badge.const { border-color:rgba(200,120,50,0.4);color:#fa8; }
+  .net-badge.exec  { border-color:rgba(160,100,220,0.4);color:#c8f; }
+  .sim-cta { display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:8px 18px;background:rgba(45,127,212,0.15);border:1px solid rgba(45,127,212,0.4);border-radius:20px;color:var(--accent-light);text-decoration:none;transition:all 0.2s; }
+  .sim-cta:hover { background:rgba(45,127,212,0.3); }
+  .recommend-ribbon { position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;padding:3px 8px;background:var(--gold);color:#000;border-radius:4px;letter-spacing:1px; }
+  .guide-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:40px;animation:fadeUp 0.6s ease 0.3s both; }
+  .guide-card { background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 16px; }
+  .guide-card .gc-icon { font-size:28px;margin-bottom:10px; }
+  .guide-card .gc-title { font-size:14px;font-weight:800;margin-bottom:6px; }
+  .guide-card .gc-title span { color:var(--gold); }
+  .guide-card .gc-desc { font-size:12px;color:var(--text-sub);line-height:1.7; }
+  .guide-card .gc-rec { font-size:11px;color:var(--accent-light);margin-top:8px;font-weight:700; }
+  .note-box { background:rgba(22,37,56,0.7);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:32px;font-size:12px;color:var(--text-sub);line-height:1.8; }
+  .note-box strong { color:var(--text); }
+  .foot { text-align:center;font-size:11px;color:var(--text-sub);line-height:1.8;padding-top:24px;border-top:1px solid var(--border); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @media(max-width:560px) { .sim-card{grid-template-columns:1fr}.sim-price{text-align:left}.sim-footer{flex-direction:column;align-items:flex-start} }
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="pr-bar">【PR・広告】本ページはアフィリエイト広告を含みます</div>
+<header>
+  <a href="https://life-navi.news/" class="logo">
+    <div class="logo-mark">L</div>
+    <div><div>LifeNavi</div><div class="logo-sub">AI時代の生活羅針盤</div></div>
+  </a>
+  <a href="https://life-navi.news/" class="back-btn">← LifeNavi 診断トップへ</a>
+</header>
+<main>
+  <div class="hero">
+    <div class="hero-eyebrow">📈 投資・資産形成ガイド 2026</div>
+    <h1>物価上昇に<span class="hl">お金に働いてもらう</span>時代</h1>
+    <p class="hero-sub">銀行預金だけでは<strong>実質的に資産が目減り</strong>する時代。NISAやロボアドなど、自分に合った方法で資産を守り育てましょう。</p>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterSIM('all',this)">すべて</button>
+    <button class="filter-btn" onclick="filterSIM('free', this)">無料・相談系</button>
+    <button class="filter-btn" onclick="filterSIM('app', this)">アプリ・自動</button>
+    <button class="filter-btn" onclick="filterSIM('stock', this)">株式・銘柄情報</button>
+    <button class="filter-btn" onclick="filterSIM('fund', this)">投資信託・NISA</button>
+    
+  </div>
+  <div class="section-title">主要投資・資産形成サービス一覧</div>
+  <div class="sim-grid" id="sim-grid">
+    
+    <div class="sim-card type-free" data-type="free" data-cat="free">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ファイナンシャルプランナー無料相談</span>
+          <span class="sim-type-badge badge-free">無料相談</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">FP資格保有</span><span class="sim-tag">資産形成設計</span><span class="sim-tag">NISA活用</span><span class="sim-tag">無料</span></div>
+        <div class="sim-desc">まず何から始めるべきか迷っている方に。独立系FPがNISA・iDeCo・保険・住宅ローンを含めたライフプラン全体を設計。相談後の契約義務なし。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">相談料</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">完全無料</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge life">FP相談</span><span class="net-badge fund">NISA/iDeCo</span></div>
+        <a href="https://life-navi.news/fp-soudan/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      <div class="recommend-ribbon">まず相談</div>
+    </div>
+    <div class="sim-card type-stock" data-type="stock" data-cat="stock">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">株式銘柄情報サービス</span>
+          <span class="sim-type-badge badge-stock">銘柄情報</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">プロ選定</span><span class="sim-tag">高騰期待銘柄</span><span class="sim-tag">毎月更新</span><span class="sim-tag">投資判断の参考</span></div>
+        <div class="sim-desc">株式投資のプロが厳選した高騰期待銘柄を毎月公開。個別株投資の銘柄選びに迷う方の参考情報として活用できる。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">月額</div>
+        <div class="price-main">要確認<span class="price-unit"></span></div>
+        <div class="price-plan">公式サイト参照</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge stock">国内株</span><span class="net-badge stock">注目銘柄</span></div>
+        <a href="https://life-navi.news/kabushiki/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      <div class="recommend-ribbon">投資家向け</div>
+    </div>
+    <div class="sim-card type-app" data-type="app" data-cat="app">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">資産管理アプリ（マネー系）</span>
+          <span class="sim-type-badge badge-app">アプリ</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">口座連携</span><span class="sim-tag">収支自動集計</span><span class="sim-tag">資産一元管理</span><span class="sim-tag">無料プランあり</span></div>
+        <div class="sim-desc">銀行・証券・クレカを連携して資産を自動集計。現在の純資産がひと目でわかり、投資判断の基礎情報として活用できる。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">基本</div>
+        <div class="price-main">0<span class="price-unit">円〜</span></div>
+        <div class="price-plan">無料プランあり</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge robo">家計管理</span><span class="net-badge fund">資産集計</span></div>
+        <a href="https://life-navi.news/tossy/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-app" data-type="app" data-cat="app fund">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ロボアドバイザー（自動運用）</span>
+          <span class="sim-type-badge badge-app">自動運用</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">自動リバランス</span><span class="sim-tag">NISA対応</span><span class="sim-tag">おまかせ投資</span><span class="sim-tag">少額からOK</span></div>
+        <div class="sim-desc">質問に答えるだけでAIが最適なポートフォリオを自動運用。手間なく長期投資を続けたい人向け。NISAつみたて枠にも対応している場合が多い。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">手数料</div>
+        <div class="price-main">年1%<span class="price-unit">程度</span></div>
+        <div class="price-plan">元本×約1%/年</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge robo">自動運用</span><span class="net-badge fund">ETF</span></div>
+        <a href="https://www.wealthnavi.co.jp/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-free" data-type="free" data-cat="fund">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">ネット証券（NISA口座）</span>
+          <span class="sim-type-badge badge-free">口座開設</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">NISA対応</span><span class="sim-tag">手数料0円</span><span class="sim-tag">投資信託豊富</span><span class="sim-tag">初心者OK</span></div>
+        <div class="sim-desc">NISAのつみたて投資枠・成長投資枠を活用するための証券口座。大手ネット証券は国内株・投資信託の売買手数料が0円。口座開設は無料。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">口座開設</div>
+        <div class="price-main">0<span class="price-unit">円</span></div>
+        <div class="price-plan">売買手数料も0円〜</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge fund">投資信託</span><span class="net-badge stock">国内株</span></div>
+        <a href="https://www.sbisec.co.jp/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+    <div class="sim-card type-app" data-type="app" data-cat="fx">
+      <div class="sim-info">
+        <div class="sim-top">
+          <span class="sim-name">FX・外貨投資サービス</span>
+          <span class="sim-type-badge badge-app">FX</span>
+        </div>
+        <div class="sim-tags"><span class="sim-tag">外貨分散</span><span class="sim-tag">円安ヘッジ</span><span class="sim-tag">スワップ狙い</span><span class="sim-tag">スマホ対応</span></div>
+        <div class="sim-desc">円安・インフレ対策として外貨への分散投資も有効。FX口座は少額から始められるが、レバレッジには注意が必要。</div>
+      </div>
+      <div class="sim-price">
+        <div class="price-label">最低証拠金</div>
+        <div class="price-main">数千<span class="price-unit">円〜</span></div>
+        <div class="price-plan">各社による</div>
+        <div class="price-from"></div>
+      </div>
+      <div class="sim-footer">
+        <div class="sim-network"><span class="net-badge fx">外貨</span><span class="net-badge stock">FX</span></div>
+        <a href="https://www.gmo-click.com/" target="_blank" rel="noopener" class="sim-cta">公式サイトへ ›</a>
+      </div>
+      
+    </div>
+  </div>
+  <div class="section-title">選び方ガイド</div>
+  <div class="guide-grid">
+    <div class="guide-card">
+      <div class="gc-icon">🔰</div>
+      <div class="gc-title"><span>投資未経験</span>・何から始めるか迷っている</div>
+      <div class="gc-desc">まずFP無料相談でライフプラン全体を把握してから、NISA口座でつみたて投資信託を始めるのが王道。</div>
+      <div class="gc-rec">おすすめ → FP無料相談 → NISA口座開設</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">🤖</div>
+      <div class="gc-title"><span>手間をかけず</span>おまかせで増やしたい</div>
+      <div class="gc-desc">ロボアドバイザーなら質問に答えるだけで自動運用してくれる。NISAとの併用もできる商品が増えている。</div>
+      <div class="gc-rec">おすすめ → ロボアドバイザー / ネット証券NISA</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">📊</div>
+      <div class="gc-title"><span>個別株で</span>大きなリターンを狙いたい</div>
+      <div class="gc-desc">個別株は銘柄選びが重要。プロが選定した銘柄情報サービスを参考にしながら、自分で最終判断する形が安全。</div>
+      <div class="gc-rec">おすすめ → 株式銘柄情報サービス</div>
+    </div>
+    <div class="guide-card">
+      <div class="gc-icon">💰</div>
+      <div class="gc-title"><span>まず資産を</span>把握したい</div>
+      <div class="gc-desc">投資を始める前に現在の資産・支出の全体像を把握することが大切。資産管理アプリで家計を可視化してから始めよう。</div>
+      <div class="gc-rec">おすすめ → 資産管理アプリ / FP無料相談</div>
+    </div></div>
+  <div style="background:linear-gradient(135deg,rgba(45,127,212,0.3),rgba(45,127,212,0.1));border:1px solid rgba(45,127,212,0.4);border-radius:16px;padding:24px 28px;text-align:center;margin-bottom:32px;">
+    <div style="font-size:11px;letter-spacing:2px;color:var(--accent-light);font-weight:700;margin-bottom:10px;text-transform:uppercase;">AI時代の生活羅針盤</div>
+    <div style="font-size:20px;font-weight:900;margin-bottom:8px;">資産形成と並行して、<span style="color:var(--gold);">収入も上げる</span></div>
+    <div style="font-size:13px;color:var(--text-sub);line-height:1.8;margin-bottom:18px;">投資だけでなく転職・スキルアップで収入基盤を強化する方法も診断できます。</div>
+    <a href="https://life-navi.news/" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-light));color:#fff;font-size:14px;font-weight:800;padding:13px 32px;border-radius:30px;text-decoration:none;box-shadow:0 4px 20px rgba(45,127,212,0.35);" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">🧭 LifeNavi で総合診断を受ける →</a>
+  </div>
+  <div class="note-box"><strong>【ご注意】</strong>掲載情報は2026年5月時点のものです。投資にはリスクが伴います。元本保証はありません。各サービスの最新情報・手数料は公式サイトでご確認ください。本ページはアフィリエイト広告を含みます。</div>
+  <div class="foot">© 2026 LifeNavi — AI時代の生活羅針盤 ｜ 本ページはアフィリエイト広告を含みます</div>
+</main>
+<script>
+function filterSIM(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sim-card').forEach(card => {
+    if (type === 'all') { card.style.display = ''; }
+    else { card.style.display = (card.dataset.type === type || card.dataset.cat.includes(type)) ? '' : 'none'; }
+  });
+}
+</script>
+</body>
+</html>
